@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    includ: dev
+  jpa:
+    database: MYSQL
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+      propeties:
+        hibernate:
+          dialect: org.hibirnate.dialect.MySQL5Dialect
+  datasource:
+    driveClassName: com.myscql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/university_db
+    username: root
+    password: root

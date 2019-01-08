@@ -1,0 +1,31 @@
+table {
+  width: 100%;
+}
+
+.example-container {
+  width:  100%;
+  height: 100%;
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.example-sidenav {
+  padding: 20px;
+}
+
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.root-component {
+  height: 100%;
+}

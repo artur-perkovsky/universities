@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Suez+One');
+*{
+  margin: 0px;
+  padding: 0px;
+}
+header{
+  width: 100%;
+  height: 50px;
+  background-color: #c3c3c3;
+  border-bottom: 1px solid silver;
+  position: relative;
+}
+header span{
+  font-size: 1.7em;
+  color: #3c3c3c;
+  font-family: 'Suez One', serif;
+  float: left;
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 20px;
+}
+header button{
+  width: 70px;
+  height: 30px;
+  text-decoration: none;
+  border: none;
+  background-color: #3c3c3c;
+  text-align: center;
+  color: #ececec;
+  margin-left: 90%;
+  margin-top: 10px;
+  border-radius: 2px;
+
+}
+header button:hover{
+  background-color: #cecece;
+  color: #3c3c3c;
+  border: 1px solid #3c3c3c;
+  border-radius: 5px;
+  -webkit-transition:   background-color 0.5s;
+    -moz-transition:   background-color 0.5s;
+    -o-transition:   background-color 0.5s;
+    transition:   background-color 0.5s;
+}
+#content{
+  width: 100%;
+  height: 500px;
+  background-color: #EEEEEE;
+}
+#country{
+  position: relative;
+  margin-left: 40px;
+padding-top: 40px;
+}
+table{
+  position: relative;
+  float: left;
+  background-color: #3e3e3e;;
+  border: 2px solid #fff;
+  border-collapse: collapse;
+  margin-left: 40px;
+  margin-top: 40px;
+  color: #fff;
+  text-align: center;
+  font-size: 1.0em;
+}
+table, td, th{
+  border: 1px solid #fff;
+
+}
+table th{
+  font-size: 1.2em;
+  font-family: 'Suez One';
+  background-color: #fff;
+  color: #3c3c3c;
+}
+table td{
+  width: 120px;
+}
+#university table td tr:first-child{
+  background-color: red;
+}
+#specialty table{
+  margin-left: 50px;
+}
+#specialty table td{
+  width: 200px;
+}
+#rating{
+  position: relative;
+  float: left;
+  margin-top: 70px;
+  margin-left: 20px;
+}
