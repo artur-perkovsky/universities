@@ -44,3 +44,4 @@ Thumbs.db
 
 # Java
 *.class
+*.iml
