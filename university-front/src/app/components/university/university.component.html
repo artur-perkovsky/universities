@@ -5,41 +5,55 @@
     <mat-drawer mode="side" opened>
       <app-navigation></app-navigation>
     </mat-drawer>
-
     <mat-drawer-content class="example-sidenav-content">
+
+      <div class="all-select">
+        <app-age-select></app-age-select>
+        <app-city-select></app-city-select>
+        <app-country-select></app-country-select>
+      </div>
+
+
       <table mat-table [dataSource]="universities" class="mat-elevation-z8 university-table">
 
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
-
-        <!-- Position Column -->
+        <!-- id Column -->
         <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef> Id</th>
+          <th mat-header-cell *matHeaderCellDef>id</th>
           <td mat-cell *matCellDef="let element"> {{element.id}}</td>
         </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Name</th>
+          <th mat-header-cell *matHeaderCellDef>Name</th>
           <td mat-cell *matCellDef="let element"> {{element.name}}</td>
         </ng-container>
 
-        <!-- Weight Column -->
+        <!-- Age Column -->
         <ng-container matColumnDef="age">
           <th mat-header-cell *matHeaderCellDef> Age</th>
           <td mat-cell *matCellDef="let element"> {{element.age}}</td>
         </ng-container>
 
-        <!-- Weight Column -->
+        <!-- City Column -->
         <ng-container matColumnDef="city">
-          <th mat-header-cell *matHeaderCellDef> City</th>
+          <th mat-header-cell *matHeaderCellDef>City</th>
           <td mat-cell *matCellDef="let element"> {{element.city.name}}</td>
         </ng-container>
 
-        <!-- Weight Column -->
+        <!-- Country Column -->
         <ng-container matColumnDef="country">
-          <th mat-header-cell *matHeaderCellDef> Country</th>
+          <th mat-header-cell *matHeaderCellDef>Country</th>
           <td mat-cell *matCellDef="let element"> {{element.country.name}}</td>
+        </ng-container>
+
+        <!-- button Column -->
+        <ng-container matColumnDef=" ">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-stroked-button (click)="openDialogDell()">Dell</button>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

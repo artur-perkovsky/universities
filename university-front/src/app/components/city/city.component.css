@@ -29,3 +29,9 @@ table {
 .root-component {
   height: 100%;
 }
+.add-button {
+  position: fixed;
+  margin-left: 82%;
+  margin-top: 35%;
+}
+

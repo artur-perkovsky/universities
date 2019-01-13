@@ -1,8 +1,9 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {UniversityService} from "../../service/university/university.service";
-import {UniversityDto} from "../../dto/university.dto";
-import {DialogData} from "../dialog/dialog.component";
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
+import { Component, Inject, OnInit } from '@angular/core';
+import { UniversityService } from "../../service/university/university.service";
+import { UniversityDto } from "../../dto/university.dto";
+
+
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material";
 
 export interface DialogData {
   animal: string;
@@ -18,11 +19,14 @@ export class UniversityComponent implements OnInit {
   animal: string;
   name: string;
 
-  displayedColumns: string[] = ['id', 'name', 'age', 'city', 'country'];
+  value: string;
+  viewValue: string;
+
+  displayedColumns: string[] = ['id', 'name', 'age', 'city', 'country', ' ',];
 
   universities: UniversityDto [] = [];
 
-  constructor(public dialog: MatDialog, private service: UniversityService) {
+  constructor(public dialog: MatDialog, public dialogDell: MatDialog, private service: UniversityService) {
   }
 
   openDialog(): void {
@@ -32,6 +36,18 @@ export class UniversityComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+    });
+  }
+
+  openDialogDell(): void {
+    const dialogRefDell = this.dialogDell.open(DialogOverviewExampleDialogDell, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRefDell.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.animal = result;
     });
@@ -61,3 +77,21 @@ export class DialogOverviewExampleDialog {
     this.dialogRef.close();
   }
 }
+
+@Component({
+  selector: 'dialog-overview-example-dialogDell',
+  templateUrl: './dialogDell.component.html',
+})
+export class DialogOverviewExampleDialogDell {
+
+  constructor(
+    public dialogRefDell: MatDialogRef<DialogOverviewExampleDialogDell>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  }
+
+  onNoClick(): void {
+    this.dialogRefDell.close();
+  }
+}
+
+
