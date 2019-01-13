@@ -1,8 +1,10 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {CityService} from "../../service/city/city.service";
-import {CityDto} from "../../dto/city.dto";
-import { MatDialog } from "@angular/material";
-import { DialogOverviewExampleDialog, DialogOverviewExampleDialogDell } from "../university/university.component";
+import { Component, Inject, OnInit } from '@angular/core';
+import { CityService } from "../../service/city/city.service";
+import { CityDto } from "../../dto/city.dto";
+
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material";
+import { DeleteButtonComponent } from "../delete-button/delete-button.component";
+
 
 export interface DialogData {
   animal: string;
@@ -27,7 +29,7 @@ export class CityComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+    const dialogRef = this.dialog.open(DialogOverviewDialogCity, {
       width: '250px',
       data: {name: this.name, animal: this.animal}
     });
@@ -39,7 +41,7 @@ export class CityComponent implements OnInit {
   }
 
   openDialogDell(): void {
-    const dialogRefDell = this.dialogDell.open(DialogOverviewExampleDialogDell, {
+    const dialogRefDell = this.dialog.open(DeleteButtonComponent, {
       width: '250px',
       data: {name: this.name, animal: this.animal}
     });
@@ -50,11 +52,28 @@ export class CityComponent implements OnInit {
     });
   }
 
+
   ngOnInit() {
     this.getAll();
   }
 
   getAll(): void {
     this.service.getAll().subscribe(all => this.cities = all);
+  }
+}
+
+@Component({
+  selector: 'dialog-overview-dialog',
+  templateUrl: './dialog.component.html',
+})
+export class DialogOverviewDialogCity {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewDialogCity>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }

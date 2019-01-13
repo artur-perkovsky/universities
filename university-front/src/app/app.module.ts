@@ -1,14 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import {MatCardModule} from '@angular/material/card';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DialogOverviewExampleDialog, UniversityComponent } from './components/university/university.component';
-import { DialogOverviewExampleDialogDell } from './components/university/university.component';
+
+import { DialogOverviewDialogUniversity, UniversityComponent } from './components/university/university.component';
+import { CityComponent, DialogOverviewDialogCity } from './components/city/city.component';
+import { CountryComponent, DialogOverviewDialogCountry } from './components/country/country.component';
+
 
 import { HttpClientModule } from "@angular/common/http";
-import { CityComponent } from './components/city/city.component';
-import { CountryComponent } from './components/country/country.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { MatTableModule } from '@angular/material/table';
@@ -24,6 +27,7 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from "@angular/platform
 import { CitySelectComponent } from "./components/city-select/city-select.component";
 import { AgeSelectComponent } from './components/age-select/age-select.component';
 import { CountrySelectComponent } from './components/country-select/country-select.component';
+import { DeleteButtonComponent } from './components/delete-button/delete-button.component';
 
 
 @NgModule({
@@ -34,11 +38,14 @@ import { CountrySelectComponent } from './components/country-select/country-sele
     CountryComponent,
     DashboardComponent,
     NavigationComponent,
-    DialogOverviewExampleDialog,
-    DialogOverviewExampleDialogDell,
+    DialogOverviewDialogUniversity,
+    DialogOverviewDialogCity,
+    DialogOverviewDialogCountry,
     CitySelectComponent,
     AgeSelectComponent,
-    CountrySelectComponent
+    CountrySelectComponent,
+    DeleteButtonComponent
+
   ],
   imports: [
     BrowserModule,
@@ -54,13 +61,16 @@ import { CountrySelectComponent } from './components/country-select/country-sele
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
-    DialogOverviewExampleDialog,
-    DialogOverviewExampleDialogDell
+    DialogOverviewDialogUniversity,
+    DialogOverviewDialogCity,
+    DialogOverviewDialogCountry,
+    DeleteButtonComponent
   ]
 })
 export class AppModule {

@@ -13,9 +13,10 @@ export interface selectCity {
 
 export class CitySelectComponent implements OnInit {
   cities: selectCity[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
+    {value: 'steak-0', viewValue: 'Hrdno'},
+    {value: 'pizza-1', viewValue: 'Minsk'},
+    {value: 'tacos-2', viewValue: 'Belostok'},
+    {value: 'tacos-2', viewValue: 'Moscow'},
   ];
 
   constructor() {

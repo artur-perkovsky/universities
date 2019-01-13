@@ -12,9 +12,10 @@ export interface selectAge {
 })
 export class AgeSelectComponent implements OnInit {
   age: selectAge[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
+    {value: 'steak-0', viewValue: '33'},
+    {value: 'pizza-1', viewValue: '45'},
+    {value: 'tacos-2', viewValue: '1'},
+    {value: 'tacos-2', viewValue: '50'},
   ];
   constructor() { }
 

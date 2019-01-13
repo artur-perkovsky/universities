@@ -1,9 +1,9 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {CountryService} from "../../service/country/country.service";
-import {CountryDto} from "../../dto/country.dto";
-import { MatDialog } from "@angular/material";
-import { DialogOverviewExampleDialog, DialogOverviewExampleDialogDell } from "../university/university.component";
+import { Component, Inject, OnInit } from '@angular/core';
+import { CountryService } from "../../service/country/country.service";
+import { CountryDto } from "../../dto/country.dto";
 
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material";
+import { DeleteButtonComponent } from "../delete-button/delete-button.component";
 
 export interface DialogData {
   animal: string;
@@ -28,7 +28,7 @@ export class CountryComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+    const dialogRef = this.dialog.open(DialogOverviewDialogCountry, {
       width: '250px',
       data: {name: this.name, animal: this.animal}
     });
@@ -40,7 +40,7 @@ export class CountryComponent implements OnInit {
   }
 
   openDialogDell(): void {
-    const dialogRefDell = this.dialogDell.open(DialogOverviewExampleDialogDell, {
+    const dialogRefDell = this.dialog.open(DeleteButtonComponent, {
       width: '250px',
       data: {name: this.name, animal: this.animal}
     });
@@ -57,6 +57,23 @@ export class CountryComponent implements OnInit {
 
   getAll(): void {
     this.service.getAll().subscribe(all => this.country = all);
+  }
+}
+
+
+@Component({
+  selector: 'dialog-overview-dialog',
+  templateUrl: './dialog.component.html',
+})
+export class DialogOverviewDialogCountry {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewDialogCountry>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }
 

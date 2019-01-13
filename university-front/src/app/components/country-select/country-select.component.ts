@@ -12,9 +12,9 @@ export interface selectCountry {
 })
 export class CountrySelectComponent implements OnInit {
   country: selectCountry[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
+    {value: 'steak-0', viewValue: 'Belarus'},
+    {value: 'pizza-1', viewValue: 'Polsa'},
+    {value: 'tacos-2', viewValue: 'Moscow'}
   ];
   constructor() {
   }

@@ -1,8 +1,10 @@
-<h1 mat-dialog-title>Hi {{data.name}}</h1>
+<h1 mat-dialog-title> Add new City</h1>
 <div mat-dialog-content>
-  <p>What's your favorite animal?</p>
   <mat-form-field>
-    <input matInput [(ngModel)]="data.animal">
+    <input matInput [(ngModel)]="data.animal" placeholder="Name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.animal" placeholder="Country">
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
