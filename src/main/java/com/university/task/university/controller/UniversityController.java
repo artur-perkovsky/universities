@@ -83,7 +83,7 @@ public class UniversityController {
 
         final Specification<UniversityEntity> result = (root, query, builder) -> {
             query.distinct(true);
-            return where(where(age).and(city).and(specialties).and(country)).toPredicate(root, query, builder);
+            return where(age).and(city).and(specialties).and(country).toPredicate(root, query, builder);
         };
 
         return ok(service.list(result, pageable).map(UniversityDto::from));
