@@ -12,18 +12,18 @@ public class UniversityEntity extends BaseEntity {
 
     @Column(name = "specialty")
     @ManyToMany
-    private List<SpecialtyEntity> specialty;
+    private List<SpecialtyEntity> specialties;
 
     @ManyToOne
     @JoinColumn(name = "city")
     private CityEntity city;
 
-    public List<SpecialtyEntity> getSpecialty() {
-        return specialty;
+    public List<SpecialtyEntity> getSpecialties() {
+        return specialties;
     }
 
-    public void setSpecialty(List<SpecialtyEntity> specialty) {
-        this.specialty = specialty;
+    public void setSpecialties(List<SpecialtyEntity> specialties) {
+        this.specialties = specialties;
     }
 
     public Long getAge() {

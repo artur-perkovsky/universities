@@ -30,7 +30,7 @@ public class UniversityDto extends BaseEntityDto {
             this.country = CountryDto.from(city.getCountryEntity());
         }
 
-        final List<SpecialtyEntity> specialties = universityEntity.getSpecialty();
+        final List<SpecialtyEntity> specialties = universityEntity.getSpecialties();
         if (specialties != null) {
             this.specialities = specialties.stream().map(SpecialtyDto::from).collect(Collectors.toList());
         }
@@ -55,7 +55,7 @@ public class UniversityDto extends BaseEntityDto {
         final List<BaseEntityDto> specialities = this.getSpecialities();
 
         if (specialities != null) {
-            universityEntity.setSpecialty(specialities.stream().map(speciality -> finder.find(SpecialtyEntity.class, speciality.getId())).filter(Objects::nonNull).collect(Collectors.toList()));
+            universityEntity.setSpecialties(specialities.stream().map(speciality -> finder.find(SpecialtyEntity.class, speciality.getId())).filter(Objects::nonNull).collect(Collectors.toList()));
         }
 
         return universityEntity;

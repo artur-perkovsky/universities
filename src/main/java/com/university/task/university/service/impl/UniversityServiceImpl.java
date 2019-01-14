@@ -14,4 +14,6 @@ public class UniversityServiceImpl extends AbstractBaseCrudServiceImpl<Universit
         super(repository);
         this.repositore = repository;
     }
+
+
 }

@@ -5,6 +5,7 @@ import com.university.task.university.repository.BaseRepository;
 import com.university.task.university.service.BaseCrudService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,8 +34,8 @@ public class AbstractBaseCrudServiceImpl<T extends BaseEntity, S> implements Bas
     }
 
     @Override
-    public Page<T> list(Pageable page) {
-        return repository.findAll(page);
+    public Page<T> list(Specification<T> specification, Pageable page) {
+        return repository.findAll(specification, page);
     }
 
     @Override
