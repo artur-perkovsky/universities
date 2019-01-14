@@ -1,4 +1,4 @@
-package com.university.task.university.controller;
+package com.university.task.university.controller.search;
 
 import java.util.List;
 

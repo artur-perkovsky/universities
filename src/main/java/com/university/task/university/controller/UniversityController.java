@@ -1,6 +1,7 @@
 package com.university.task.university.controller;
 
 import com.university.task.university.controller.dto.UniversityDto;
+import com.university.task.university.controller.search.UniversitySearch;
 import com.university.task.university.exceptions.UniversityBadRequestException;
 import com.university.task.university.model.UniversityEntity;
 import com.university.task.university.service.UniversityService;
