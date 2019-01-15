@@ -21,7 +21,7 @@ export abstract class AbstractCrudService<T extends BaseDto> implements CrudServ
   }
 
   list(searchParams: string, page: number): Observable<any> {
-    const requestUrl = searchParams + `&page=${page}`;
+    const requestUrl = searchParams + `page=${page}`;
     return this.httpClient.get<any>(this.getPath() + "/list" + requestUrl);
   }
 
