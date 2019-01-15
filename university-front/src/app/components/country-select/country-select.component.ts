@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CountryDto } from "../../dto/country.dto";
+import { CountryService } from "../../service/country/country.service";
 
-export interface selectCountry {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-country-select',
@@ -11,15 +9,15 @@ export interface selectCountry {
   styleUrls: ['./country-select.component.css']
 })
 export class CountrySelectComponent implements OnInit {
-  country: selectCountry[] = [
-    {value: 'steak-0', viewValue: 'Belarus'},
-    {value: 'pizza-1', viewValue: 'Polsa'},
-    {value: 'tacos-2', viewValue: 'Moscow'}
-  ];
-  constructor() {
+  countries: CountryDto[] = [];
+  constructor(private service: CountryService) {
   }
 
   ngOnInit() {
+    this.getAll();
+  }
+  getAll(): void {
+    this.service.getAll().subscribe(all => this.countries = all);
   }
 
 }

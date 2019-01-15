@@ -1,7 +1,7 @@
 <mat-form-field class="selectCity">
   <mat-select placeholder="City">
-    <mat-option *ngFor="let selectCity  of cities  " [value]="selectCity.value">
-      {{selectCity.viewValue}}
+    <mat-option *ngFor="let selectCity  of cities  " [value]="selectCity.name">
+      {{selectCity.name}}
     </mat-option>
   </mat-select>
 </mat-form-field>

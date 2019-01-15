@@ -4,7 +4,7 @@ import { UniversityDto } from "../../dto/university.dto";
 
 
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material";
-import { DeleteButtonComponent } from "../delete-button/delete-button.component";
+import { DeleteButtonUniversityComponent } from "../delete-button/delete-button-university.component";
 
 export interface DialogData {
   animal: string;
@@ -41,15 +41,15 @@ export class UniversityComponent implements OnInit {
     });
   }
 
-  openDialogDell(): void {
-    const dialogRefDell = this.dialog.open(DeleteButtonComponent, {
+  openDialogDell(id: number): void {
+    const dialogRefDell = this.dialog.open(DeleteButtonUniversityComponent, {
       width: '250px',
-      data: {name: this.name, animal: this.animal}
+      data: {id: id}
     });
 
     dialogRefDell.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.animal = result;
+      this.service.getAll().subscribe(all => this.universities = all);
     });
   }
 

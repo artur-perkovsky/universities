@@ -27,7 +27,10 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from "@angular/platform
 import { CitySelectComponent } from "./components/city-select/city-select.component";
 import { AgeSelectComponent } from './components/age-select/age-select.component';
 import { CountrySelectComponent } from './components/country-select/country-select.component';
-import { DeleteButtonComponent } from './components/delete-button/delete-button.component';
+import { DeleteButtonCityComponent } from './components/delete-button/delete-button-city.component';
+import { RatingComponent } from './components/rating/rating.component';
+import { DeleteButtonUniversityComponent } from "./components/delete-button/delete-button-university.component";
+import { DeleteButtonCountryComponent } from "./components/delete-button/delete-button-country.component";
 
 
 @NgModule({
@@ -44,7 +47,10 @@ import { DeleteButtonComponent } from './components/delete-button/delete-button.
     CitySelectComponent,
     AgeSelectComponent,
     CountrySelectComponent,
-    DeleteButtonComponent
+    DeleteButtonCityComponent,
+    DeleteButtonUniversityComponent,
+    DeleteButtonCountryComponent,
+    RatingComponent
 
   ],
   imports: [
@@ -70,7 +76,9 @@ import { DeleteButtonComponent } from './components/delete-button/delete-button.
     DialogOverviewDialogUniversity,
     DialogOverviewDialogCity,
     DialogOverviewDialogCountry,
-    DeleteButtonComponent
+    DeleteButtonCityComponent,
+    DeleteButtonCountryComponent,
+    DeleteButtonUniversityComponent
   ]
 })
 export class AppModule {
