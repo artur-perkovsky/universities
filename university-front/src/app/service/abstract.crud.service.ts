@@ -5,7 +5,6 @@ import {Observable} from "rxjs";
 
 export abstract class AbstractCrudService<T extends BaseDto> implements CrudService<T> {
 
-
   constructor(protected httpClient: HttpClient) {
   }
 
@@ -21,5 +20,12 @@ export abstract class AbstractCrudService<T extends BaseDto> implements CrudServ
     return this.httpClient.get<T []>(this.getPath() + "/all");
   }
 
+  list(searchParams: string, page: number): Observable<any> {
+    const requestUrl = searchParams + `&page=${page}`;
+    return this.httpClient.get<any>(this.getPath() + "/list" + requestUrl);
+  }
+
   abstract getPath(): string;
 }
+
+
