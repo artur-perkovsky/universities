@@ -8,57 +8,94 @@
     <mat-drawer-content class="example-sidenav-content">
 
       <div class="all-select">
-        <app-age-select></app-age-select>
-        <app-city-select></app-city-select>
-        <app-country-select></app-country-select>
+        <mat-form-field class="selectAge">
+          <mat-select placeholder="Age">
+            <mat-option *ngFor="let age  of allAge  "(onSelectionChange)="selectorChangedAge(age)">
+              {{age.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="selectCity">
+          <mat-select placeholder="City">
+            <mat-option *ngFor="let city  of cities  "(onSelectionChange)="selectorChangedCity(city)">
+              {{city.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="selectCountry">
+          <mat-select placeholder="Country">
+            <mat-option *ngFor="let country  of countries  "(onSelectionChange)="selectorChangedCountry(country)">
+              {{country.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
       </div>
 
+      <div class="example-container mat-elevation-z8">
 
-      <table mat-table [dataSource]="universities" class="mat-elevation-z8 university-table">
+        <div class="example-loading-shade"
+             *ngIf="isLoadingResults || isRateLimitReached">
+          <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+          <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+            API rate limit has been reached. It will be reset in one minute.
+          </div>
+        </div>
 
-        <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
-        <!-- id Column -->
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef>id</th>
-          <td mat-cell *matCellDef="let element"> {{element.id}}</td>
-        </ng-container>
+        <div class="example-table-container university-table" >
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let element"> {{element.name}}</td>
-        </ng-container>
+          <table mat-table [dataSource]="universities" class="example-table">
 
-        <!-- Age Column -->
-        <ng-container matColumnDef="age">
-          <th mat-header-cell *matHeaderCellDef> Age</th>
-          <td mat-cell *matCellDef="let element"> {{element.age}}</td>
-        </ng-container>
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef>id</th>
+              <td mat-cell *matCellDef="let row"> {{row.id}}</td>
+            </ng-container>
 
-        <!-- City Column -->
-        <ng-container matColumnDef="city">
-          <th mat-header-cell *matHeaderCellDef>City</th>
-          <td mat-cell *matCellDef="let element"> {{element.city.name}}</td>
-        </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let row"> {{row.name}}</td>
+            </ng-container>
 
-        <!-- Country Column -->
-        <ng-container matColumnDef="country">
-          <th mat-header-cell *matHeaderCellDef>Country</th>
-          <td mat-cell *matCellDef="let element"> {{element.country.name}}</td>
-        </ng-container>
+            <!-- Age Column -->
+            <ng-container matColumnDef="age">
+              <th mat-header-cell *matHeaderCellDef> Age</th>
+              <td mat-cell *matCellDef="let row"> {{row.age}}</td>
+            </ng-container>
 
-        <!-- button Column -->
-        <ng-container matColumnDef=" ">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-stroked-button (click)="openDialogDell(element.id)">Delete</button>
-          </td>
-        </ng-container>
+            <!-- City Column -->
+            <ng-container matColumnDef="city">
+              <th mat-header-cell *matHeaderCellDef>City</th>
+              <td mat-cell *matCellDef="let row"> {{row.city.name}}</td>
+            </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
+            <!-- Country Column -->
+            <ng-container matColumnDef="country">
+              <th mat-header-cell *matHeaderCellDef>Country</th>
+              <td mat-cell *matCellDef="let row"> {{row.country.name}}</td>
+            </ng-container>
+
+            <!-- Delete button Column -->
+            <ng-container matColumnDef=" ">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let row">
+                <button mat-stroked-button (click)="openDialogDell()">Delete</button>
+              </td>
+            </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          </table>
+
+        </div>
+
+        <mat-paginator [length]="resultsLength" [pageSize]="pageSize"></mat-paginator>
+      </div>
+
 
       <div class="add-button">
         <button mat-fab color="primary" (click)="openDialog()">Add</button>

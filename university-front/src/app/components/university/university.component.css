@@ -44,3 +44,30 @@ table {
 .university-table{
   margin-top: 80px;
 }
+
+/*pagination*/
+.pagination{
+  position: absolute;
+  margin-top: 700px;
+}
+
+.selectAge{
+  position: absolute;
+  float: left;
+  margin-left: 20px;
+  width: 60px;
+}
+
+.selectCity{
+  position: absolute;
+  float: left;
+  margin-left: 100px;
+  width: 100px;
+}
+
+.selectCountry{
+  position: absolute;
+  float: left;
+  margin-left: 220px;
+  width: 120px;
+}

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,10 +18,14 @@ import { MatTableModule } from '@angular/material/table';
 import {
   MatButtonModule,
   MatDialogModule,
-  MatFormFieldModule, MatInputModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule,
+  MatSelectModule,
   MatSidenavModule,
-  MatToolbarModule,
-  MatSelectModule
+  MatSortModule,
+  MatToolbarModule
 } from "@angular/material";
 import { BrowserAnimationsModule, NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { CitySelectComponent } from "./components/city-select/city-select.component";
@@ -68,7 +72,10 @@ import { DeleteButtonCountryComponent } from "./components/delete-button/delete-
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent],
