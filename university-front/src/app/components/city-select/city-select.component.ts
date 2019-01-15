@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { CityDto } from "../../dto/city.dto";
+import { CountryService } from "../../service/country/country.service";
+import { CityService } from "../../service/city/city.service";
 
-export interface selectCity {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-city-select',
@@ -12,17 +11,16 @@ export interface selectCity {
 })
 
 export class CitySelectComponent implements OnInit {
-  cities: selectCity[] = [
-    {value: 'steak-0', viewValue: 'Hrdno'},
-    {value: 'pizza-1', viewValue: 'Minsk'},
-    {value: 'tacos-2', viewValue: 'Belostok'},
-    {value: 'tacos-2', viewValue: 'Moscow'},
-  ];
 
-  constructor() {
+  cities: CityDto [] = [];
+
+  constructor(private service: CityService) {
   }
 
   ngOnInit() {
+    this.getAll();
   }
-
+  getAll(): void {
+    this.service.getAll().subscribe(all => this.cities = all);
+  }
 }

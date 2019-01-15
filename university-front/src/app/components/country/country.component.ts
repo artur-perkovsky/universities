@@ -3,7 +3,7 @@ import { CountryService } from "../../service/country/country.service";
 import { CountryDto } from "../../dto/country.dto";
 
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material";
-import { DeleteButtonComponent } from "../delete-button/delete-button.component";
+import { DeleteButtonCountryComponent } from "../delete-button/delete-button-country.component";
 
 export interface DialogData {
   animal: string;
@@ -24,7 +24,7 @@ export class CountryComponent implements OnInit {
 
   country: CountryDto [];
 
-  constructor(public dialog: MatDialog, public dialogDell: MatDialog, private service: CountryService) {
+  constructor(public dialog: MatDialog, private service: CountryService) {
   }
 
   openDialog(): void {
@@ -39,15 +39,15 @@ export class CountryComponent implements OnInit {
     });
   }
 
-  openDialogDell(): void {
-    const dialogRefDell = this.dialog.open(DeleteButtonComponent, {
+  openDialogDell(id: number): void {
+    const dialogRefDell = this.dialog.open(DeleteButtonCountryComponent, {
       width: '250px',
-      data: {name: this.name, animal: this.animal}
+      data: {id: id}
     });
 
     dialogRefDell.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.animal = result;
+      this.service.getAll().subscribe(all => this.country = all);
     });
   }
 

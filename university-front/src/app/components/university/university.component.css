@@ -33,7 +33,7 @@ table {
 .add-button {
   position: fixed;
   margin-left: 82%;
-  margin-top: 35%;
+  margin-top: 300px;
 }
 
 /*select*/
@@ -44,6 +44,7 @@ table {
 .university-table{
   margin-top: 80px;
 }
+
 /*pagination*/
 .pagination{
   position: absolute;

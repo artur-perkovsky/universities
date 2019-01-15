@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UniversityDto } from "../../dto/university.dto";
+import { UniversityService } from "../../service/university/university.service";
 
-export interface selectAge {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-age-select',
@@ -11,15 +9,17 @@ export interface selectAge {
   styleUrls: ['./age-select.component.css']
 })
 export class AgeSelectComponent implements OnInit {
-  age: selectAge[] = [
-    {value: 'steak-0', viewValue: '33'},
-    {value: 'pizza-1', viewValue: '45'},
-    {value: 'tacos-2', viewValue: '1'},
-    {value: 'tacos-2', viewValue: '50'},
-  ];
-  constructor() { }
+  age: UniversityDto [] = [];
 
-  ngOnInit() {
+  constructor(private service: UniversityService) {
+
   }
 
+  ngOnInit() {
+    this.getAll();
+  }
+
+  getAll(): void {
+    this.service.getAll().subscribe(all => this.age = all);
+  }
 }

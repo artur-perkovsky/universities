@@ -36,8 +36,7 @@ public class UniversityController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<UniversityDto> index(@PathVariable Long id) {
-        return service.byId(id).map(universityEntity -> ok(UniversityDto.from(universityEntity)))
-                .orElseThrow(UniversityBadRequestException::new);
+        return service.byId(id).map(universityEntity -> ok(UniversityDto.from(universityEntity))).orElseThrow(UniversityBadRequestException::new);
     }
 
     @PostMapping(value = "/save")
@@ -61,25 +60,13 @@ public class UniversityController {
     @GetMapping("/list")
     public ResponseEntity<Page<UniversityDto>> list(@Valid UniversitySearch search, @PageableDefault(sort = {"name"}) Pageable pageable) {
 
-        final Specification<UniversityEntity> age = (root, query, builder) ->
-                ofNullable(search.getAge())
-                        .map(value -> builder.lessThan(root.get("age"), search.getAge()))
-                        .orElse(null);
+        final Specification<UniversityEntity> age = (root, query, builder) -> ofNullable(search.getAge()).map(value -> builder.lessThan(root.get("age"), search.getAge())).orElse(null);
 
-        final Specification<UniversityEntity> city = (root, query, builder) ->
-                ofNullable(search.getCity())
-                        .map(value -> builder.equal(root.join("city", JoinType.INNER).get("id"), search.getCity()))
-                        .orElse(null);
+        final Specification<UniversityEntity> city = (root, query, builder) -> ofNullable(search.getCity()).map(value -> builder.equal(root.join("city", JoinType.INNER).get("id"), search.getCity())).orElse(null);
 
-        final Specification<UniversityEntity> specialties = (root, query, builder) ->
-                ofNullable(search.getSpecialties())
-                        .map(values -> builder.isTrue(root.join("specialties", JoinType.INNER).get("id").in(search.getSpecialties())))
-                        .orElse(null);
+        final Specification<UniversityEntity> specialties = (root, query, builder) -> ofNullable(search.getSpecialties()).map(values -> builder.isTrue(root.join("specialties", JoinType.INNER).get("id").in(search.getSpecialties()))).orElse(null);
 
-        final Specification<UniversityEntity> country = (root, query, builder) ->
-                ofNullable(search.getCountry())
-                        .map(values -> builder.equal(root.join("city", JoinType.INNER).join("countryEntity", JoinType.INNER).get("id"), search.getCountry()))
-                        .orElse(null);
+        final Specification<UniversityEntity> country = (root, query, builder) -> ofNullable(search.getCountry()).map(values -> builder.equal(root.join("city", JoinType.INNER).join("countryEntity", JoinType.INNER).get("id"), search.getCountry())).orElse(null);
 
         final Specification<UniversityEntity> result = (root, query, builder) -> {
             query.distinct(true);

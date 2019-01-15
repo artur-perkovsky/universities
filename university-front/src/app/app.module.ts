@@ -1,36 +1,40 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms'; // <-- NgModel lives here
-import {MatCardModule} from '@angular/material/card';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import { MatCardModule } from '@angular/material/card';
 
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
-import {DialogOverviewDialogUniversity, UniversityComponent} from './components/university/university.component';
-import {CityComponent, DialogOverviewDialogCity} from './components/city/city.component';
-import {CountryComponent, DialogOverviewDialogCountry} from './components/country/country.component';
+import { DialogOverviewDialogUniversity, UniversityComponent } from './components/university/university.component';
+import { CityComponent, DialogOverviewDialogCity } from './components/city/city.component';
+import { CountryComponent, DialogOverviewDialogCountry } from './components/country/country.component';
 
 
-import {HttpClientModule} from "@angular/common/http";
-import {DashboardComponent} from './components/dashboard/dashboard.component';
-import {NavigationComponent} from './components/navigation/navigation.component';
-import {MatTableModule} from '@angular/material/table';
+import { HttpClientModule } from "@angular/common/http";
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { MatTableModule } from '@angular/material/table';
 import {
   MatButtonModule,
   MatDialogModule,
   MatFormFieldModule,
   MatInputModule,
-  MatPaginatorModule, MatProgressSpinnerModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule,
   MatSelectModule,
   MatSidenavModule,
   MatSortModule,
   MatToolbarModule
 } from "@angular/material";
-import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
-import {CitySelectComponent} from "./components/city-select/city-select.component";
-import {AgeSelectComponent} from './components/age-select/age-select.component';
-import {CountrySelectComponent} from './components/country-select/country-select.component';
-import {DeleteButtonComponent} from './components/delete-button/delete-button.component';
+import { BrowserAnimationsModule, NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { CitySelectComponent } from "./components/city-select/city-select.component";
+import { AgeSelectComponent } from './components/age-select/age-select.component';
+import { CountrySelectComponent } from './components/country-select/country-select.component';
+import { DeleteButtonCityComponent } from './components/delete-button/delete-button-city.component';
+import { RatingComponent } from './components/rating/rating.component';
+import { DeleteButtonUniversityComponent } from "./components/delete-button/delete-button-university.component";
+import { DeleteButtonCountryComponent } from "./components/delete-button/delete-button-country.component";
 
 
 @NgModule({
@@ -47,7 +51,10 @@ import {DeleteButtonComponent} from './components/delete-button/delete-button.co
     CitySelectComponent,
     AgeSelectComponent,
     CountrySelectComponent,
-    DeleteButtonComponent
+    DeleteButtonCityComponent,
+    DeleteButtonUniversityComponent,
+    DeleteButtonCountryComponent,
+    RatingComponent
 
   ],
   imports: [
@@ -76,7 +83,9 @@ import {DeleteButtonComponent} from './components/delete-button/delete-button.co
     DialogOverviewDialogUniversity,
     DialogOverviewDialogCity,
     DialogOverviewDialogCountry,
-    DeleteButtonComponent
+    DeleteButtonCityComponent,
+    DeleteButtonCountryComponent,
+    DeleteButtonUniversityComponent
   ]
 })
 export class AppModule {

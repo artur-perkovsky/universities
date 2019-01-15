@@ -3,11 +3,11 @@ import {UniversityService} from "../../service/university/university.service";
 import {UniversityDto} from "../../dto/university.dto";
 import {merge, of as observableOf} from 'rxjs';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatPaginator} from "@angular/material";
-import {DeleteButtonComponent} from "../delete-button/delete-button.component";
 import {catchError, map, startWith, switchMap} from "rxjs/operators";
 import {BaseDto} from "../../dto/base.dto";
 import {CityService} from "../../service/city/city.service";
 import {CountryService} from "../../service/country/country.service";
+import { DeleteButtonUniversityComponent } from "../delete-button/delete-button-university.component";
 
 export interface DialogData {
   animal: string;
@@ -94,15 +94,16 @@ export class UniversityComponent implements OnInit {
     });
   }
 
-  openDialogDell(): void {
-    const dialogRefDell = this.dialog.open(DeleteButtonComponent, {
+  openDialogDell(id: number): void {
+    const dialogRefDell = this.dialog.open(DeleteButtonUniversityComponent, {
       width: '250px',
-      data: {name: this.name, animal: this.animal}
+      data: {id: id}
     });
 
     dialogRefDell.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.animal = result;
+      this.paginator.pageIndex = 0;
+      this.updateTable();
     });
   }
 
