@@ -1,7 +1,6 @@
-<p>
-  Dashboard
-</p>
-
-<li *ngFor="let tab of tabs">
-  <a routerLink="{{tab.right}}">{{tab.left}}</a>
+<li *ngFor="let tab of tabs" class="">
+  <mat-card class="a">
+      <a routerLink="{{tab.right}}">{{tab.left}}</a>
+  </mat-card>
 </li>
+

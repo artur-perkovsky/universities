@@ -35,3 +35,17 @@ table {
   margin-left: 82%;
   margin-top: 35%;
 }
+
+/*select*/
+.all-select{
+  margin-top: 10px;
+}
+
+.university-table{
+  margin-top: 80px;
+}
+/*pagination*/
+.pagination{
+  position: absolute;
+  margin-top: 700px;
+}

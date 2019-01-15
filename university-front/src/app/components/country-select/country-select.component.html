@@ -1,0 +1,7 @@
+<mat-form-field class="selectCountry">
+  <mat-select placeholder="Country">
+    <mat-option *ngFor="let selectCity  of country  " [value]="selectCity.value">
+      {{selectCity.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

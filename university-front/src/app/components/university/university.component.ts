@@ -1,8 +1,10 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {UniversityService} from "../../service/university/university.service";
-import {UniversityDto} from "../../dto/university.dto";
-import {DialogData} from "../dialog/dialog.component";
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
+import { Component, Inject, OnInit } from '@angular/core';
+import { UniversityService } from "../../service/university/university.service";
+import { UniversityDto } from "../../dto/university.dto";
+
+
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material";
+import { DeleteButtonComponent } from "../delete-button/delete-button.component";
 
 export interface DialogData {
   animal: string;
@@ -18,7 +20,9 @@ export class UniversityComponent implements OnInit {
   animal: string;
   name: string;
 
-  displayedColumns: string[] = ['id', 'name', 'age', 'city', 'country'];
+  value: string;
+
+  displayedColumns: string[] = ['id', 'name', 'age', 'city', 'country', ' ',];
 
   universities: UniversityDto [] = [];
 
@@ -26,12 +30,24 @@ export class UniversityComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+    const dialogRef = this.dialog.open(DialogOverviewDialogUniversity, {
       width: '250px',
       data: {name: this.name, animal: this.animal}
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+    });
+  }
+
+  openDialogDell(): void {
+    const dialogRefDell = this.dialog.open(DeleteButtonComponent, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRefDell.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.animal = result;
     });
@@ -47,13 +63,13 @@ export class UniversityComponent implements OnInit {
 }
 
 @Component({
-  selector: 'dialog-overview-example-dialog',
+  selector: 'dialog-overview-dialog',
   templateUrl: './dialog.component.html',
 })
-export class DialogOverviewExampleDialog {
+export class DialogOverviewDialogUniversity {
 
   constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    public dialogRef: MatDialogRef<DialogOverviewDialogUniversity>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
   }
 
@@ -61,3 +77,6 @@ export class DialogOverviewExampleDialog {
     this.dialogRef.close();
   }
 }
+
+
+

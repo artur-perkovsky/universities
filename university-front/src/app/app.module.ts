@@ -1,23 +1,33 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms'; // <-- NgModel lives here
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {DialogOverviewExampleDialog, UniversityComponent} from './components/university/university.component';
-import {HttpClientModule} from "@angular/common/http";
-import { CityComponent } from './components/city/city.component';
-import { CountryComponent } from './components/country/country.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import {MatCardModule} from '@angular/material/card';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+import { DialogOverviewDialogUniversity, UniversityComponent } from './components/university/university.component';
+import { CityComponent, DialogOverviewDialogCity } from './components/city/city.component';
+import { CountryComponent, DialogOverviewDialogCountry } from './components/country/country.component';
+
+
+import { HttpClientModule } from "@angular/common/http";
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import {
   MatButtonModule,
   MatDialogModule,
   MatFormFieldModule, MatInputModule,
   MatSidenavModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatSelectModule
 } from "@angular/material";
-import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule, NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { CitySelectComponent } from "./components/city-select/city-select.component";
+import { AgeSelectComponent } from './components/age-select/age-select.component';
+import { CountrySelectComponent } from './components/country-select/country-select.component';
+import { DeleteButtonComponent } from './components/delete-button/delete-button.component';
 
 
 @NgModule({
@@ -28,7 +38,14 @@ import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-b
     CountryComponent,
     DashboardComponent,
     NavigationComponent,
-    DialogOverviewExampleDialog
+    DialogOverviewDialogUniversity,
+    DialogOverviewDialogCity,
+    DialogOverviewDialogCountry,
+    CitySelectComponent,
+    AgeSelectComponent,
+    CountrySelectComponent,
+    DeleteButtonComponent
+
   ],
   imports: [
     BrowserModule,
@@ -43,11 +60,18 @@ import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-b
     MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [DialogOverviewExampleDialog]
+  entryComponents: [
+    DialogOverviewDialogUniversity,
+    DialogOverviewDialogCity,
+    DialogOverviewDialogCountry,
+    DeleteButtonComponent
+  ]
 })
 export class AppModule {
 }
