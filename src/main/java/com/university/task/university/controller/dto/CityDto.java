@@ -14,7 +14,7 @@ public class CityDto extends BaseEntityDto {
 
     public CityDto(CityEntity cityEntity) {
         super(cityEntity);
-        this.country = BaseEntityDto.from(cityEntity.getCountryEntity());
+        this.country = BaseEntityDto.from(cityEntity.getCountry());
     }
 
     public static CityDto from(CityEntity cityEntity) {
@@ -29,7 +29,7 @@ public class CityDto extends BaseEntityDto {
         final BaseEntityDto country = this.getCountry();
 
         if (country != null) {
-            cityEntity.setCountryEntity(finder.find(CountryEntity.class, this.getCountry().getId()));
+            cityEntity.setCountry(finder.find(CountryEntity.class, this.getCountry().getId()));
         }
 
         return cityEntity;

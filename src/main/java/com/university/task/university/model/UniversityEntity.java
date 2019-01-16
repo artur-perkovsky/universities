@@ -10,8 +10,8 @@ public class UniversityEntity extends BaseEntity {
     @Column(name = "age")
     private Long age;
 
-    @Column(name = "specialty")
     @ManyToMany
+    @Column(name = "specialty")
     private List<SpecialtyEntity> specialties;
 
     @ManyToOne

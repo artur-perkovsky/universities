@@ -27,7 +27,7 @@ public class UniversityDto extends BaseEntityDto {
         final CityEntity city = universityEntity.getCity();
         if (city != null) {
             this.city = CityDto.from(city);
-            this.country = CountryDto.from(city.getCountryEntity());
+            this.country = CountryDto.from(city.getCountry());
         }
 
         final List<SpecialtyEntity> specialties = universityEntity.getSpecialties();

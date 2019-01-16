@@ -19,8 +19,8 @@ public class RatingDto extends BaseEntityDto {
     public RatingDto(RatingEntity ratingEntity) {
         super(ratingEntity);
         this.position = ratingEntity.getPosition();
-        this.country = BaseEntityDto.from(ratingEntity.getCountryEntity());
-        this.university = BaseEntityDto.from(ratingEntity.getUniversityEntity());
+        this.country = BaseEntityDto.from(ratingEntity.getCountry());
+        this.university = BaseEntityDto.from(ratingEntity.getUniversity());
     }
 
     public static RatingDto from(RatingEntity ratingEntity) {
@@ -35,12 +35,12 @@ public class RatingDto extends BaseEntityDto {
         final BaseEntityDto country = this.getCountry();
 
         if (country != null) {
-            ratingEntity.setCountryEntity(finder.find(CountryEntity.class, this.getCountry().getId()));
+            ratingEntity.setCountry(finder.find(CountryEntity.class, this.getCountry().getId()));
         }
 
         final BaseEntityDto university = this.getUniversity();
         if (university != null) {
-            ratingEntity.setUniversityEntity(finder.find(UniversityEntity.class, this.getUniversity().getId()));
+            ratingEntity.setUniversity(finder.find(UniversityEntity.class, this.getUniversity().getId()));
         }
 
         return ratingEntity;

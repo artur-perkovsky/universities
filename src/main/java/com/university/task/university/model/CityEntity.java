@@ -6,14 +6,15 @@ import javax.persistence.*;
 @Table(name = "city")
 public class CityEntity extends BaseEntity {
 
-    @ManyToOne
-    private CountryEntity countryEntity;
+    @ManyToOne()
+    @JoinColumn(name = "country")
+    private CountryEntity country;
 
-    public CountryEntity getCountryEntity() {
-        return countryEntity;
+    public CountryEntity getCountry() {
+        return country;
     }
 
-    public void setCountryEntity(CountryEntity countryEntity) {
-        this.countryEntity = countryEntity;
+    public void setCountry(CountryEntity country) {
+        this.country = country;
     }
 }

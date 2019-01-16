@@ -1,37 +1,36 @@
 package com.university.task.university.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "rating")
 public class RatingEntity extends BaseEntity {
 
     @OneToOne
-    private UniversityEntity universityEntity;
+    @JoinColumn(name = "university")
+    private UniversityEntity university;
 
     @OneToOne
-    private CountryEntity countryEntity;
+    @JoinColumn(name = "country")
+    private CountryEntity country;
 
     @Column(name = "position")
     private Long position;
 
-    public UniversityEntity getUniversityEntity() {
-        return universityEntity;
+    public UniversityEntity getUniversity() {
+        return university;
     }
 
-    public void setUniversityEntity(UniversityEntity universityEntity) {
-        this.universityEntity = universityEntity;
+    public void setUniversity(UniversityEntity university) {
+        this.university = university;
     }
 
-    public CountryEntity getCountryEntity() {
-        return countryEntity;
+    public CountryEntity getCountry() {
+        return country;
     }
 
-    public void setCountryEntity(CountryEntity countryEntity) {
-        this.countryEntity = countryEntity;
+    public void setCountry(CountryEntity country) {
+        this.country = country;
     }
 
     public Long getPosition() {
