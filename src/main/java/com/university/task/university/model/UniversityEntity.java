@@ -18,6 +18,9 @@ public class UniversityEntity extends BaseEntity {
     @JoinColumn(name = "city")
     private CityEntity city;
 
+    @Column(name = "rating")
+    private Long rating;
+
     public List<SpecialtyEntity> getSpecialties() {
         return specialties;
     }
@@ -40,5 +43,13 @@ public class UniversityEntity extends BaseEntity {
 
     public void setCity(CityEntity city) {
         this.city = city;
+    }
+
+    public Long getRating() {
+        return rating;
+    }
+
+    public void setRating(Long rating) {
+        this.rating = rating;
     }
 }

@@ -8,6 +8,7 @@ import {BaseDto} from "../../dto/base.dto";
 import {CityService} from "../../service/city/city.service";
 import {CountryService} from "../../service/country/country.service";
 import {DeleteButtonUniversityComponent} from "../delete-button/delete-button-university.component";
+import {SpecialtyService} from "../../service/specialty/specialty.service";
 
 export interface DialogData {
   animal: string;
@@ -30,10 +31,13 @@ export class UniversityComponent implements OnInit {
   selectedAge: number;
   selectedCity: number;
   selectedCountry: number;
+  selectedSpeciality: number;
 
   allAge: BaseDto [] = [all];
   cities: BaseDto [] = [all];
   countries: BaseDto [] = [all];
+  specialities: BaseDto [] = [all];
+
 
   displayedColumns: string[] = ['name', 'age', 'city', 'country', 'specialities', ' ',];
 
@@ -48,7 +52,8 @@ export class UniversityComponent implements OnInit {
 
   constructor(public dialog: MatDialog, private service: UniversityService,
               private cityService: CityService,
-              private countryService: CountryService) {
+              private countryService: CountryService,
+              private specialityService: SpecialtyService) {
   }
 
   initSelectors() {
@@ -56,6 +61,11 @@ export class UniversityComponent implements OnInit {
       this.countries = result.map(result => new BaseDto(result.id, result.name));
       this.countries.unshift(all);
     });
+
+    this.specialityService.getAll().subscribe(result => {
+      this.specialities = result.map(result => new BaseDto(result.id, result.name));
+      this.specialities.unshift(all);
+    })
   }
 
   createSearchParams(): string {
@@ -72,6 +82,10 @@ export class UniversityComponent implements OnInit {
 
     if (this.selectedCountry != null) {
       result = result + `country=${this.selectedCountry}&`;
+    }
+
+    if (this.selectedSpeciality != null) {
+      result = result + `specialty=${this.selectedSpeciality}&`;
     }
 
     return result;
@@ -132,6 +146,12 @@ export class UniversityComponent implements OnInit {
 
       this.updateTable();
     });
+  }
+
+  selectorChangedSpecialities(newValue){
+    this.selectedSpeciality = newValue;
+    this.paginator.pageIndex = 0;
+    this.updateTable();
   }
 
   updateTable() {

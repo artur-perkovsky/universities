@@ -71,3 +71,10 @@ table {
   margin-left: 100px;
   width: 100px;
 }
+
+.celectSpecialities{
+  position: absolute;
+  float: left;
+  margin-left: 360px;
+  width: 160px;
+}

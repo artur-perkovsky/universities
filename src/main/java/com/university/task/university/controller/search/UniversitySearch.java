@@ -6,7 +6,7 @@ public class UniversitySearch {
 
     private Long city;
     private Long age;
-    private List<Long> specialties;
+    private Long specialty;
     private Long country;
 
     public Long getCity() {
@@ -25,20 +25,19 @@ public class UniversitySearch {
         this.age = age;
     }
 
-
-    public List<Long> getSpecialties() {
-        return specialties;
-    }
-
-    public void setSpecialties(List<Long> specialties) {
-        this.specialties = specialties;
-    }
-
     public Long getCountry() {
         return country;
     }
 
     public void setCountry(Long country) {
         this.country = country;
+    }
+
+    public Long getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(Long specialty) {
+        this.specialty = specialty;
     }
 }

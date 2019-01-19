@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.criteria.JoinType;
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -64,7 +65,7 @@ public class UniversityController {
 
         final Specification<UniversityEntity> city = (root, query, builder) -> ofNullable(search.getCity()).map(value -> builder.equal(root.join("city", JoinType.INNER).get("id"), search.getCity())).orElse(null);
 
-        final Specification<UniversityEntity> specialties = (root, query, builder) -> ofNullable(search.getSpecialties()).map(values -> builder.isTrue(root.join("specialties", JoinType.INNER).get("id").in(search.getSpecialties()))).orElse(null);
+        final Specification<UniversityEntity> specialties = (root, query, builder) -> ofNullable(search.getSpecialty()).map(values -> builder.isTrue(root.join("specialties", JoinType.INNER).get("id").in(Collections.singletonList(search.getSpecialty())))).orElse(null);
 
         final Specification<UniversityEntity> country = (root, query, builder) -> ofNullable(search.getCountry()).map(values -> builder.equal(root.join("city", JoinType.INNER).join("country", JoinType.INNER).get("id"), search.getCountry())).orElse(null);
 

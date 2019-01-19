@@ -35,6 +35,13 @@
           </mat-select>
         </mat-form-field>
 
+        <mat-form-field class="celectSpecialities">
+          <mat-select placeholder="Specialities" [(ngModel)]="selectedSpeciality" (ngModelChange)="selectorChangedSpecialities($event)">
+            <mat-option *ngFor="let speciality  of specialities  " [value]="speciality.id">
+              {{speciality.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
       </div>
 
