@@ -79,7 +79,7 @@ public class CityController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<Page<CityDto>> list(@Valid CitySearch search, @PageableDefault(sort = {"name"}, size = 20) Pageable pageable) {
+    public ResponseEntity<Page<CityDto>> list(@Valid CitySearch search, @PageableDefault(sort = {"name"}) Pageable pageable) {
 
         final Specification<CityEntity> name = (root, query, builder) ->
                 ofNullable(search.getName())

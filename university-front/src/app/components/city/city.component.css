@@ -35,3 +35,42 @@ table {
   margin-top: 35%;
 }
 
+.select-country{
+  position: absolute;
+  float: left;
+  margin-left: 20px;
+  width: 100px;
+}
+
+.all-select {
+  margin-top: 10px;
+}
+
+.filter {
+  position: absolute;
+  float: left;
+  margin-left: 650px;
+  margin-top: 10px;
+  width: 80px;
+}
+
+.reset-filter {
+  position: absolute;
+  float: left;
+  margin-top: 10px;
+  margin-left: 750px;
+  width: 80px;
+}
+
+.university-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.city-table{
+  margin-top: 80px;
+}
+
+
+

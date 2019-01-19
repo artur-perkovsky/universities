@@ -1,13 +1,17 @@
 <h1 mat-dialog-title> Add new City</h1>
 <div mat-dialog-content>
   <mat-form-field>
-    <input matInput [(ngModel)]="data.animal" placeholder="Name">
+    <input matInput [(ngModel)]="cityDto.name" placeholder="Name">
   </mat-form-field>
-  <mat-form-field>
-    <input matInput [(ngModel)]="data.animal" placeholder="Country">
+  <mat-form-field class="selectCountry">
+    <mat-select placeholder="Country" [(ngModel)]="cityDto.country">
+      <mat-option *ngFor="let country  of countries  " [value]="country">
+        {{country.name}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+  <button mat-button [mat-dialog-close]="cityDto" (click)="onYesClick()" cdkFocusInitial>Ok</button>
 </div>

@@ -121,10 +121,8 @@ export class UniversityComponent implements OnInit {
     });
 
     dialogRefDell.afterClosed().subscribe(result => {
-      if (dialogRefDell.componentInstance.needUpdate) {
-        this.paginator.pageIndex = 0;
-        this.updateTable();
-      }
+      this.paginator.pageIndex = 0;
+      this.updateTable();
     });
   }
 
@@ -201,7 +199,6 @@ export class CreateUniversityDialog {
 
   selectedCity: number;
   selectedCountry: number;
-  selectedSpecialities: BaseDto [];
 
   cities: BaseDto [] = [];
   countries: BaseDto [] = [];
