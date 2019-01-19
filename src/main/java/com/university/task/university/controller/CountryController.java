@@ -57,7 +57,7 @@ public class CountryController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<Page<CountryDto>> list(@Valid CountrySearch search, @PageableDefault(sort = {"name"}, size = 20) Pageable pageable) {
+    public ResponseEntity<Page<CountryDto>> list(@Valid CountrySearch search, @PageableDefault(sort = {"name"}) Pageable pageable) {
 
         final Specification<CountryEntity> name = (root, query, builder) ->
                 ofNullable(search.getName())
@@ -71,5 +71,4 @@ public class CountryController {
 
         return ok(service.list(result, pageable).map(CountryDto::from));
     }
-
 }

@@ -31,5 +31,17 @@ table {
 .add-button {
   position: fixed;
   margin-left: 82%;
-  margin-top: 35%;
+  margin-top: 47%;;
+
+}
+
+.country-table{
+  margin-top: 80px;
+}
+
+.university-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
 }

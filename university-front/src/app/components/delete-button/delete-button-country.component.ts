@@ -24,8 +24,9 @@ export class DeleteButtonCountryComponent {
   }
 
   onYesClick(): void {
-    this.service.delete(this.data.id);
-  }
+    this.service.delete(this.data.id).subscribe(result => {
+      this.dialogRef.close()
+    });  }
 
 }
 

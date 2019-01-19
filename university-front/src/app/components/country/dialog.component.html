@@ -1,10 +1,10 @@
 <h1 mat-dialog-title>Add new Country</h1>
 <div mat-dialog-content>
   <mat-form-field>
-    <input matInput [(ngModel)]="data.animal" placeholder="Name">
+    <input matInput [(ngModel)]="countryDto.name" placeholder="Name">
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+  <button mat-button [mat-dialog-close]="countryDto" (click)="onYesClick()" cdkFocusInitial>Ok</button>
 </div>

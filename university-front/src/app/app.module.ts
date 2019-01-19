@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 
 import { CreateUniversityDialog, UniversityComponent } from './components/university/university.component';
 import { CityComponent, DialogOverviewDialogCity } from './components/city/city.component';
-import { CountryComponent, DialogOverviewDialogCountry } from './components/country/country.component';
+import { CountryComponent, CreateCountryDialog } from './components/country/country.component';
 
 
 import { HttpClientModule } from "@angular/common/http";
@@ -47,7 +47,7 @@ import { DeleteButtonCountryComponent } from "./components/delete-button/delete-
     NavigationComponent,
     CreateUniversityDialog,
     DialogOverviewDialogCity,
-    DialogOverviewDialogCountry,
+    CreateCountryDialog,
     CitySelectComponent,
     AgeSelectComponent,
     CountrySelectComponent,
@@ -83,7 +83,7 @@ import { DeleteButtonCountryComponent } from "./components/delete-button/delete-
   entryComponents: [
     CreateUniversityDialog,
     DialogOverviewDialogCity,
-    DialogOverviewDialogCountry,
+    CreateCountryDialog,
     DeleteButtonCityComponent,
     DeleteButtonCountryComponent,
     DeleteButtonUniversityComponent
