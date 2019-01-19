@@ -101,7 +101,11 @@ table {
   width: 80px;
 }
 
-
 .age-form-field {
   width: 60px;
+}
+
+.navigator{
+  background-color:rgba(146,199,255,0.04);
+  width: 200px;
 }

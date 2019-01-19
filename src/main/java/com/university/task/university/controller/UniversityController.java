@@ -44,8 +44,15 @@ public class UniversityController {
 
     @PostMapping(value = "/save")
     public ResponseEntity<UniversityDto> save(@RequestBody UniversityDto dto) {
+        validate(dto);
         final UniversityEntity university = conversionService.convert(dto, UniversityEntity.class);
         return ok(UniversityDto.from(service.save(university)));
+    }
+
+    private void validate(UniversityDto dto) {
+        if (dto.getAge() == null || dto.getCity() == null || dto.getRating() == null || dto.getCountry() == null || dto.getSpecialities() == null) {
+            throw new UniversityBadRequestException();
+        }
     }
 
     @DeleteMapping(value = "/{id}")
@@ -76,8 +83,8 @@ public class UniversityController {
             return where(where(age).and(city).and(specialties).and(country)).toPredicate(root, query, builder);
         };
 
-        if(search.getRating() != null) {
-           pageable = new PageRequest(0, search.getRating().intValue(), Sort.Direction.ASC, "rating");
+        if (search.getRating() != null) {
+            pageable = new PageRequest(0, search.getRating().intValue(), Sort.Direction.ASC, "rating");
         }
 
         return ok(service.list(result, pageable).map(UniversityDto::from));

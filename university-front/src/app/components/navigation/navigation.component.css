@@ -27,4 +27,11 @@ background-color:  #3f51b5;
 .mat {
   position: relative;
   height: 90%;
+  margin-top: 26px;
+}
+
+.menu-button {
+  font-size: 20px;
+  text-align:left;
+  height: 55px;
 }

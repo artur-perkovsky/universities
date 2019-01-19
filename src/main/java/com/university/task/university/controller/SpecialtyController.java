@@ -1,10 +1,8 @@
 package com.university.task.university.controller;
 
-import com.university.task.university.controller.dto.CountryDto;
 import com.university.task.university.controller.dto.SpecialtyDto;
 import com.university.task.university.controller.search.CountrySearch;
 import com.university.task.university.exceptions.UniversityBadRequestException;
-import com.university.task.university.model.CountryEntity;
 import com.university.task.university.model.SpecialtyEntity;
 import com.university.task.university.service.SpecialtyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +45,15 @@ public class SpecialtyController {
 
     @PostMapping(value = "/save")
     public ResponseEntity<SpecialtyDto> save(@RequestBody SpecialtyDto dto) {
+        validate(dto);
         final SpecialtyEntity specialty = conversionService.convert(dto, SpecialtyEntity.class);
         return ok(SpecialtyDto.from(service.save(specialty)));
+    }
+
+    private void validate(SpecialtyDto dto) {
+        if (dto.getName() == null) {
+            throw new UniversityBadRequestException();
+        }
     }
 
     @DeleteMapping(value = "/{id}")

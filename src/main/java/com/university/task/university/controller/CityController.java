@@ -67,8 +67,15 @@ public class CityController {
 
     @PostMapping(value = "/save")
     public ResponseEntity<CityDto> save(@RequestBody CityDto dto) {
+        validate(dto);
         final CityEntity city = conversionService.convert(dto, CityEntity.class);
         return ok(CityDto.from(service.save(city)));
+    }
+
+    private void validate(CityDto dto) {
+        if (dto.getCountry() == null || dto.getName() == null) {
+            throw new UniversityBadRequestException();
+        }
     }
 
     @DeleteMapping(value = "/{id}")
