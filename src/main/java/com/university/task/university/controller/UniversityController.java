@@ -68,7 +68,7 @@ public class UniversityController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<Page<UniversityDto>> list(@Valid UniversitySearch search, @PageableDefault(sort = {"rating"}) Pageable pageable) {
+    public ResponseEntity<Page<UniversityDto>> list(@Valid UniversitySearch search, @PageableDefault(sort = {"rating"}, direction = Sort.Direction.DESC) Pageable pageable) {
 
         final Specification<UniversityEntity> age = (root, query, builder) -> ofNullable(search.getAge()).map(value -> builder.lessThanOrEqualTo(root.get("age"), search.getAge())).orElse(null);
 
@@ -84,7 +84,7 @@ public class UniversityController {
         };
 
         if (search.getRating() != null) {
-            pageable = new PageRequest(0, search.getRating().intValue(), Sort.Direction.ASC, "rating");
+            pageable = new PageRequest(0, search.getRating().intValue(), Sort.Direction.DESC, "rating");
         }
 
         return ok(service.list(result, pageable).map(UniversityDto::from));
