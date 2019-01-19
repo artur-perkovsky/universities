@@ -18,7 +18,7 @@ import { MatTableModule } from '@angular/material/table';
 import {
   MatButtonModule,
   MatDialogModule,
-  MatFormFieldModule,
+  MatFormFieldModule, MatIconModule,
   MatInputModule,
   MatPaginatorModule,
   MatProgressSpinnerModule,
@@ -75,7 +75,7 @@ import { DeleteButtonCountryComponent } from "./components/delete-button/delete-
     MatCardModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
-    MatSortModule
+    MatSortModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

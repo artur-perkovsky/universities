@@ -7,54 +7,49 @@
     </mat-drawer>
 
     <mat-drawer-content class="university-sidenav-content">
-
       <div class="all-select">
-        <mat-form-field class="selectAge">
-          <mat-select placeholder="Age">
-            <mat-option *ngFor="let age  of allAge " [value]="age.name"
-                        (onSelectionChange)="selectorChangedAge(age)">
-              {{age.name}}
-            </mat-option>
-          </mat-select>
+
+        <mat-form-field class="age-form-field selectAge">
+          <input matInput placeholder="Younger" [(ngModel)]="age">
         </mat-form-field>
 
         <mat-form-field class="selectCountry">
-          <mat-select placeholder="Country" [(ngModel)]="selectedCountry" (ngModelChange)="selectorChangedCountry($event)">
+          <mat-select placeholder="Country" [(ngModel)]="selectedCountry"
+                      (ngModelChange)="selectorChangedCountry($event)">
             <mat-option *ngFor="let country  of countries  " [value]="country.id">
               {{country.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
-
         <mat-form-field class="selectCity">
-          <mat-select placeholder="City" [(ngModel)]="selectedCity" (ngModelChange)="selectorChangedCity($event)">
+          <mat-select placeholder="City" [(ngModel)]="selectedCity">
             <mat-option *ngFor="let city  of cities  " [value]="city.id">
               {{city.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="celectSpecialities">
-          <mat-select placeholder="Specialities" [(ngModel)]="selectedSpeciality" (ngModelChange)="selectorChangedSpecialities($event)">
+        <mat-form-field class="selectSpecialities">
+          <mat-select placeholder="Specialities" [(ngModel)]="selectedSpeciality">
             <mat-option *ngFor="let speciality  of specialities  " [value]="speciality.id">
               {{speciality.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
+        <mat-form-field class="top-rating">
+          <input matInput placeholder="Top" [(ngModel)]="rating">
+        </mat-form-field>
+
+        <button mat-button color="primary" class="filter" (click)="filter()">Filter</button>
+
+        <button mat-button color="accent" class="reset-filter" (click)="resetFilter()">Reset</button>
+
+
       </div>
 
       <div class="example-container mat-elevation-z8">
-
-        <div class="example-loading-shade"
-             *ngIf="isLoadingResults || isRateLimitReached">
-          <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-          <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
-            API rate limit has been reached. It will be reset in one minute.
-          </div>
-        </div>
-
         <div class="example-table-container university-table">
 
           <table mat-table [dataSource]="universities" class="example-table">
@@ -96,7 +91,8 @@
                   </mat-select>
                 </mat-form-field>
 
-                {{row.country.specialities}}</td>
+                {{row.country.specialities}}
+              </td>
             </ng-container>
 
             <!-- Country Column -->

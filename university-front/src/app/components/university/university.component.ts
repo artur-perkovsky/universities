@@ -28,16 +28,15 @@ export class UniversityComponent implements OnInit {
 
   value: string;
 
-  selectedAge: number;
   selectedCity: number;
   selectedCountry: number;
   selectedSpeciality: number;
+  rating: number;
+  age: number;
 
-  allAge: BaseDto [] = [all];
   cities: BaseDto [] = [all];
   countries: BaseDto [] = [all];
   specialities: BaseDto [] = [all];
-
 
   displayedColumns: string[] = ['name', 'age', 'city', 'country', 'specialities', 'rating', ' ',];
 
@@ -57,6 +56,17 @@ export class UniversityComponent implements OnInit {
   }
 
   initSelectors() {
+
+    this.selectedCity = null;
+    this.selectedCountry = null;
+    this.selectedSpeciality = null;
+    this.age = null;
+    this.rating = null;
+
+    this.cities = [all];
+    this.countries = [all];
+    this.specialities = [all];
+
     this.countryService.getAll().subscribe(result => {
       this.countries = result.map(result => new BaseDto(result.id, result.name));
       this.countries.unshift(all);
@@ -65,15 +75,15 @@ export class UniversityComponent implements OnInit {
     this.specialityService.getAll().subscribe(result => {
       this.specialities = result.map(result => new BaseDto(result.id, result.name));
       this.specialities.unshift(all);
-    })
+    });
   }
 
   createSearchParams(): string {
 
     let result = '?';
 
-    if (this.selectedAge != null) {
-      result = result + `age=${this.selectedAge}&`;
+    if (this.age != null) {
+      result = result + `age=${this.age}&`;
     }
 
     if (this.selectedCity != null) {
@@ -86,6 +96,10 @@ export class UniversityComponent implements OnInit {
 
     if (this.selectedSpeciality != null) {
       result = result + `specialty=${this.selectedSpeciality}&`;
+    }
+
+    if (this.rating != null) {
+      result = result + `rating=${this.rating}&`;
     }
 
     return result;
@@ -116,17 +130,6 @@ export class UniversityComponent implements OnInit {
     });
   }
 
-  selectorChangedAge() {
-    this.paginator.pageIndex = 0;
-    this.updateTable();
-  }
-
-  selectorChangedCity(newValue) {
-    this.selectedCity = newValue;
-    this.paginator.pageIndex = 0;
-    this.updateTable();
-  }
-
   selectorChangedCountry(newValue) {
 
     this.selectedCountry = newValue;
@@ -135,7 +138,7 @@ export class UniversityComponent implements OnInit {
 
     if (this.selectedCountry == null) {
       this.cities = [all];
-      this.selectorChangedCity(null);
+      this.selectedCity = newValue;
       return;
     }
 
@@ -143,15 +146,7 @@ export class UniversityComponent implements OnInit {
       this.cities = result.map(result => new BaseDto(result.id, result.name));
       this.cities.unshift(all);
       this.selectedCity = null;
-
-      this.updateTable();
     });
-  }
-
-  selectorChangedSpecialities(newValue){
-    this.selectedSpeciality = newValue;
-    this.paginator.pageIndex = 0;
-    this.updateTable();
   }
 
   updateTable() {
@@ -184,6 +179,16 @@ export class UniversityComponent implements OnInit {
   ngOnInit() {
     this.initSelectors();
     this.updateTable()
+  }
+
+  filter() {
+    this.paginator.pageIndex = 0;
+    this.updateTable()
+  }
+
+  resetFilter() {
+    this.initSelectors();
+    this.updateTable();
   }
 
 

@@ -58,13 +58,6 @@ table {
   width: 60px;
 }
 
-.selectCity{
-  position: absolute;
-  float: left;
-  margin-left: 220px;
-  width: 120px;
-}
-
 .selectCountry{
   position: absolute;
   float: left;
@@ -72,9 +65,43 @@ table {
   width: 100px;
 }
 
-.celectSpecialities{
+.selectCity{
+  position: absolute;
+  float: left;
+  margin-left: 220px;
+  width: 120px;
+}
+
+.selectSpecialities{
   position: absolute;
   float: left;
   margin-left: 360px;
   width: 160px;
+}
+.top-rating{
+  position: absolute;
+  float: left;
+  margin-left: 535px;
+  width: 60px;
+}
+
+.filter {
+  position: absolute;
+  float: left;
+  margin-left: 650px;
+  margin-top: 10px;
+  width: 80px;
+}
+
+.reset-filter {
+  position: absolute;
+  float: left;
+  margin-top: 10px;
+  margin-left: 750px;
+  width: 80px;
+}
+
+
+.age-form-field {
+  width: 60px;
 }
