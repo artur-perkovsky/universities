@@ -28,7 +28,6 @@ import {
   MatToolbarModule
 } from "@angular/material";
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
-import {CountrySelectComponent} from './components/country-select/country-select.component';
 import {DeleteButtonCityComponent} from './components/delete-button/delete-button-city.component';
 import {DeleteButtonUniversityComponent} from "./components/delete-button/delete-button-university.component";
 import {DeleteButtonCountryComponent} from "./components/delete-button/delete-button-country.component";
@@ -45,7 +44,6 @@ import {DeleteButtonCountryComponent} from "./components/delete-button/delete-bu
     CreateUniversityDialog,
     DialogOverviewDialogCity,
     CreateCountryDialog,
-    CountrySelectComponent,
     DeleteButtonCityComponent,
     DeleteButtonUniversityComponent,
     DeleteButtonCountryComponent,
