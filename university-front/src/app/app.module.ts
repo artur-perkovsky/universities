@@ -1,24 +1,24 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'; // <-- NgModel lives here
-import { MatCardModule } from '@angular/material/card';
+import {MatCardModule} from '@angular/material/card';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 
-import { CreateUniversityDialog, UniversityComponent } from './components/university/university.component';
-import { CityComponent, DialogOverviewDialogCity } from './components/city/city.component';
-import { CountryComponent, CreateCountryDialog } from './components/country/country.component';
+import {CreateUniversityDialog, UniversityComponent} from './components/university/university.component';
+import {CityComponent, DialogOverviewDialogCity} from './components/city/city.component';
+import {CountryComponent, CreateCountryDialog} from './components/country/country.component';
 
 
-import { HttpClientModule } from "@angular/common/http";
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { NavigationComponent } from './components/navigation/navigation.component';
-import { MatTableModule } from '@angular/material/table';
+import {HttpClientModule} from "@angular/common/http";
+import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {NavigationComponent} from './components/navigation/navigation.component';
+import {MatTableModule} from '@angular/material/table';
 import {
   MatButtonModule,
   MatDialogModule,
-  MatFormFieldModule, MatIconModule,
+  MatFormFieldModule,
   MatInputModule,
   MatPaginatorModule,
   MatProgressSpinnerModule,
@@ -27,14 +27,13 @@ import {
   MatSortModule,
   MatToolbarModule
 } from "@angular/material";
-import { BrowserAnimationsModule, NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { CitySelectComponent } from "./components/city-select/city-select.component";
-import { AgeSelectComponent } from './components/age-select/age-select.component';
-import { CountrySelectComponent } from './components/country-select/country-select.component';
-import { DeleteButtonCityComponent } from './components/delete-button/delete-button-city.component';
-import { RatingComponent } from './components/rating/rating.component';
-import { DeleteButtonUniversityComponent } from "./components/delete-button/delete-button-university.component";
-import { DeleteButtonCountryComponent } from "./components/delete-button/delete-button-country.component";
+import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {CitySelectComponent} from "./components/city-select/city-select.component";
+import {AgeSelectComponent} from './components/age-select/age-select.component';
+import {CountrySelectComponent} from './components/country-select/country-select.component';
+import {DeleteButtonCityComponent} from './components/delete-button/delete-button-city.component';
+import {DeleteButtonUniversityComponent} from "./components/delete-button/delete-button-university.component";
+import {DeleteButtonCountryComponent} from "./components/delete-button/delete-button-country.component";
 
 
 @NgModule({
@@ -54,8 +53,6 @@ import { DeleteButtonCountryComponent } from "./components/delete-button/delete-
     DeleteButtonCityComponent,
     DeleteButtonUniversityComponent,
     DeleteButtonCountryComponent,
-    RatingComponent
-
   ],
   imports: [
     BrowserModule,
