@@ -20,6 +20,7 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
+              "src/Uni_icon_6.png",
               "src/assets"
             ],
             "styles": [

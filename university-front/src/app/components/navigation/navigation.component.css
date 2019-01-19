@@ -31,7 +31,9 @@ background-color:  #3f51b5;
 }
 
 .menu-button {
+  font-family: Roboto ;
   font-size: 20px;
-  text-align:left;
+  text-align: left;
+  line-height: 55px;
   height: 55px;
 }

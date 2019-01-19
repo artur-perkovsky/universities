@@ -12,7 +12,6 @@ import {CountryComponent, CreateCountryDialog} from './components/country/countr
 
 
 import {HttpClientModule} from "@angular/common/http";
-import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {NavigationComponent} from './components/navigation/navigation.component';
 import {MatTableModule} from '@angular/material/table';
 import {
@@ -41,7 +40,6 @@ import {DeleteButtonSpecialitiesComponent} from "./components/delete-button/dele
     UniversityComponent,
     CityComponent,
     CountryComponent,
-    DashboardComponent,
     NavigationComponent,
     CreateUniversityDialog,
     DialogOverviewDialogCity,
