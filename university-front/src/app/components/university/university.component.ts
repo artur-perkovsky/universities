@@ -11,7 +11,6 @@ import {DeleteButtonUniversityComponent} from "../delete-button/delete-button-un
 import {SpecialtyService} from "../../service/specialty/specialty.service";
 
 export interface DialogData {
-  animal: string;
   name: string;
 }
 
@@ -23,10 +22,6 @@ const all: BaseDto = {id: null, name: 'All'};
   styleUrls: ['./university.component.css']
 })
 export class UniversityComponent implements OnInit {
-  animal: string;
-  name: string;
-
-  value: string;
 
   selectedCity: number;
   selectedCountry: number;
@@ -108,12 +103,10 @@ export class UniversityComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewDialogUniversity, {
       width: '250px',
-      data: {name: this.name, animal: this.animal}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.animal = result;
     });
   }
 
@@ -159,7 +152,6 @@ export class UniversityComponent implements OnInit {
             this.paginator.pageIndex);
         }),
         map(data => {
-          // Flip flag to show that loading has finished.
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
           this.resultsLength = data.totalElements;
@@ -169,7 +161,6 @@ export class UniversityComponent implements OnInit {
         }),
         catchError(() => {
           this.isLoadingResults = false;
-          // Catch if the GitHub API has reached its rate limit. Return empty data.
           this.isRateLimitReached = true;
           return observableOf([]);
         })
