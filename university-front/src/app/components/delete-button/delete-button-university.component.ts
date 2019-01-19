@@ -1,7 +1,7 @@
-import { Component, Inject } from '@angular/core';
+import {Component, Inject} from '@angular/core';
 
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";
-import { UniversityService } from "../../service/university/university.service";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import {UniversityService} from "../../service/university/university.service";
 
 export interface DialogData {
   id: number;
@@ -14,6 +14,8 @@ export interface DialogData {
 })
 export class DeleteButtonUniversityComponent {
 
+  needUpdate: boolean = false;
+
   constructor(private service: UniversityService,
               public dialogRef: MatDialogRef<DeleteButtonUniversityComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData) {
@@ -24,9 +26,12 @@ export class DeleteButtonUniversityComponent {
   }
 
   onYesClick(): void {
-    this.service.delete(this.data.id);
-  }
+    this.needUpdate = true;
 
+    this.service.delete(this.data.id).subscribe(result => {
+      this.dialogRef.close()
+    });
+  }
 }
 
 

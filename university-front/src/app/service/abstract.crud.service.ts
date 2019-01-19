@@ -12,8 +12,8 @@ export abstract class AbstractCrudService<T extends BaseDto> implements CrudServ
     return this.httpClient.get<T>(this.getPath() + "/" + id);
   }
 
-  delete(id: number): void {
-    this.httpClient.delete(this.getPath() + "/" + id).subscribe(() => console.log("deleted"));
+  delete(id: number): Observable<any> {
+   return this.httpClient.delete(this.getPath() + "/" + id);
   }
 
   getAll(): Observable<T []> {

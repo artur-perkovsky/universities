@@ -51,7 +51,6 @@ export class UniversityComponent implements OnInit {
   }
 
   initSelectors() {
-
     this.selectedCity = null;
     this.selectedCountry = null;
     this.selectedSpeciality = null;
@@ -100,7 +99,7 @@ export class UniversityComponent implements OnInit {
     return result;
   }
 
-  openDialog(): void {
+  openCreateDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewDialogUniversity, {
       width: '250px',
     });
@@ -110,21 +109,21 @@ export class UniversityComponent implements OnInit {
     });
   }
 
-  openDialogDell(id: number): void {
+  openDeleteDialog(id: number): void {
     const dialogRefDell = this.dialog.open(DeleteButtonUniversityComponent, {
       width: '250px',
       data: {id: id}
     });
 
     dialogRefDell.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.paginator.pageIndex = 0;
-      this.updateTable();
+      if (dialogRefDell.componentInstance.needUpdate) {
+        this.paginator.pageIndex = 0;
+        this.updateTable();
+      }
     });
   }
 
   selectorChangedCountry(newValue) {
-
     this.selectedCountry = newValue;
 
     this.paginator.pageIndex = 0;
@@ -182,7 +181,9 @@ export class UniversityComponent implements OnInit {
     this.updateTable();
   }
 
-
+  refresh() {
+    this.updateTable();
+  }
 }
 
 @Component({
