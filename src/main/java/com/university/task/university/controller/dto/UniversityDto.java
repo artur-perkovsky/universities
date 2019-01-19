@@ -15,25 +15,28 @@ public class UniversityDto extends BaseEntityDto {
     private BaseEntityDto city;
     private BaseEntityDto country;
     private List<BaseEntityDto> specialities;
+    private Long rating;
 
     public UniversityDto() {
         super();
     }
 
-    public UniversityDto(UniversityEntity universityEntity) {
-        super(universityEntity);
-        this.age = universityEntity.getAge();
+    public UniversityDto(UniversityEntity university) {
+        super(university);
+        this.age = university.getAge();
 
-        final CityEntity city = universityEntity.getCity();
+        final CityEntity city = university.getCity();
         if (city != null) {
             this.city = CityDto.from(city);
             this.country = CountryDto.from(city.getCountry());
         }
 
-        final List<SpecialtyEntity> specialties = universityEntity.getSpecialties();
+        final List<SpecialtyEntity> specialties = university.getSpecialties();
         if (specialties != null) {
             this.specialities = specialties.stream().map(SpecialtyDto::from).collect(Collectors.toList());
         }
+
+        this.rating = university.getRating();
     }
 
     public static UniversityDto from(UniversityEntity universityEntity) {
@@ -41,24 +44,25 @@ public class UniversityDto extends BaseEntityDto {
     }
 
     public UniversityEntity convert(EntityFinder finder) {
-        UniversityEntity universityEntity = finder.find(UniversityEntity.class, this.getId());
-        universityEntity = universityEntity != null ? universityEntity : new UniversityEntity();
-        universityEntity.setAge(this.getAge());
-        universityEntity.setName(this.getName());
+        UniversityEntity university = finder.find(UniversityEntity.class, this.getId());
+        university = university != null ? university : new UniversityEntity();
+        university.setAge(this.getAge());
+        university.setName(this.getName());
+        university.setRating(this.getRating());
 
         BaseEntityDto city = this.getCity();
 
         if (city != null) {
-            universityEntity.setCity(finder.find(CityEntity.class, city.getId()));
+            university.setCity(finder.find(CityEntity.class, city.getId()));
         }
 
         final List<BaseEntityDto> specialities = this.getSpecialities();
 
         if (specialities != null) {
-            universityEntity.setSpecialties(specialities.stream().map(speciality -> finder.find(SpecialtyEntity.class, speciality.getId())).filter(Objects::nonNull).collect(Collectors.toList()));
+            university.setSpecialties(specialities.stream().map(speciality -> finder.find(SpecialtyEntity.class, speciality.getId())).filter(Objects::nonNull).collect(Collectors.toList()));
         }
 
-        return universityEntity;
+        return university;
     }
 
     public Long getAge() {
@@ -91,5 +95,13 @@ public class UniversityDto extends BaseEntityDto {
 
     public void setCountry(BaseEntityDto country) {
         this.country = country;
+    }
+
+    public Long getRating() {
+        return rating;
+    }
+
+    public void setRating(Long rating) {
+        this.rating = rating;
     }
 }

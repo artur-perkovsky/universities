@@ -39,7 +39,7 @@ export class UniversityComponent implements OnInit {
   specialities: BaseDto [] = [all];
 
 
-  displayedColumns: string[] = ['name', 'age', 'city', 'country', 'specialities', ' ',];
+  displayedColumns: string[] = ['name', 'age', 'city', 'country', 'specialities', 'rating', ' ',];
 
   universities: UniversityDto [] = [];
 

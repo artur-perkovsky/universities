@@ -59,9 +59,11 @@ public class UniversityController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<Page<UniversityDto>> list(@Valid UniversitySearch search, @PageableDefault(sort = {"name"}) Pageable pageable) {
+    public ResponseEntity<Page<UniversityDto>> list(@Valid UniversitySearch search, @PageableDefault(sort = {"rating"}) Pageable pageable) {
 
         final Specification<UniversityEntity> age = (root, query, builder) -> ofNullable(search.getAge()).map(value -> builder.lessThan(root.get("age"), search.getAge())).orElse(null);
+
+        final Specification<UniversityEntity> rating = (root, query, builder) -> ofNullable(search.getRating()).map(value -> builder.lessThan(root.get("rating"), search.getRating())).orElse(null);
 
         final Specification<UniversityEntity> city = (root, query, builder) -> ofNullable(search.getCity()).map(value -> builder.equal(root.join("city", JoinType.INNER).get("id"), search.getCity())).orElse(null);
 
@@ -71,7 +73,7 @@ public class UniversityController {
 
         final Specification<UniversityEntity> result = (root, query, builder) -> {
             query.distinct(true);
-            return where(where(age).and(city).and(specialties).and(country)).toPredicate(root, query, builder);
+            return where(where(age).and(rating).and(city).and(specialties).and(country)).toPredicate(root, query, builder);
         };
 
         return ok(service.list(result, pageable).map(UniversityDto::from));

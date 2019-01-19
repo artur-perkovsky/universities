@@ -1,13 +1,12 @@
 package com.university.task.university.controller.search;
 
-import java.util.List;
-
 public class UniversitySearch {
 
     private Long city;
     private Long age;
     private Long specialty;
     private Long country;
+    private Long rating;
 
     public Long getCity() {
         return city;
@@ -39,5 +38,13 @@ public class UniversitySearch {
 
     public void setSpecialty(Long specialty) {
         this.specialty = specialty;
+    }
+
+    public Long getRating() {
+        return rating;
+    }
+
+    public void setRating(Long rating) {
+        this.rating = rating;
     }
 }

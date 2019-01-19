@@ -99,6 +99,12 @@
                 {{row.country.specialities}}</td>
             </ng-container>
 
+            <!-- Country Column -->
+            <ng-container matColumnDef="rating">
+              <th mat-header-cell *matHeaderCellDef>Rating</th>
+              <td mat-cell *matCellDef="let row"> {{row.rating}}</td>
+            </ng-container>
+
             <!-- Delete button Column -->
             <ng-container matColumnDef=" ">
               <th mat-header-cell *matHeaderCellDef></th>
