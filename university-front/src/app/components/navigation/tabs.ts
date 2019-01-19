@@ -1,4 +1,4 @@
-import {Pair} from "../utils/pair";
+import {Pair} from "../../utils/pair";
 
 export class Tabs {
 
