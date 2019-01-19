@@ -10,6 +10,7 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -76,7 +77,7 @@ public class UniversityController {
         };
 
         if(search.getRating() != null) {
-           pageable = new PageRequest(0, search.getRating().intValue());
+           pageable = new PageRequest(0, search.getRating().intValue(), Sort.Direction.ASC, "rating");
         }
 
         return ok(service.list(result, pageable).map(UniversityDto::from));

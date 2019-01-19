@@ -9,6 +9,8 @@ import {CityService} from "../../service/city/city.service";
 import {CountryService} from "../../service/country/country.service";
 import {DeleteButtonUniversityComponent} from "../delete-button/delete-button-university.component";
 import {SpecialtyService} from "../../service/specialty/specialty.service";
+import {UniversitySaveDto} from "./university.save.dto";
+import {FormControl} from "@angular/forms";
 
 export interface DialogData {
   name: string;
@@ -100,12 +102,15 @@ export class UniversityComponent implements OnInit {
   }
 
   openCreateDialog(): void {
-    const dialogRef = this.dialog.open(DialogOverviewDialogUniversity, {
+    const dialogRef = this.dialog.open(CreateUniversityDialog, {
       width: '250px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      if (dialogRef.componentInstance.needUpdate) {
+        this.paginator.pageIndex = 0;
+        this.updateTable();
+      }
     });
   }
 
@@ -180,25 +185,85 @@ export class UniversityComponent implements OnInit {
     this.initSelectors();
     this.updateTable();
   }
-
-  refresh() {
-    this.updateTable();
-  }
 }
 
 @Component({
   selector: 'dialog-overview-dialog',
   templateUrl: './dialog.component.html',
 })
-export class DialogOverviewDialogUniversity {
+export class CreateUniversityDialog {
+
+  toppings = new FormControl();
+
+  needUpdate: boolean;
+
+  universityDto: UniversityDto = new UniversityDto(null, null);
+
+  selectedCity: number;
+  selectedCountry: number;
+  selectedSpecialities: BaseDto [];
+
+  cities: BaseDto [] = [];
+  countries: BaseDto [] = [];
+  specialities: BaseDto [] = [];
 
   constructor(
-    public dialogRef: MatDialogRef<DialogOverviewDialogUniversity>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+    public dialogRef: MatDialogRef<CreateUniversityDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private universityService: UniversityService,
+    private countryService: CountryService,
+    private specialityService: SpecialtyService,
+    private cityService: CityService) {
   }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  onYesClick(): void {
+    this.needUpdate = true;
+
+    this.universityService.save(this.universityDto).subscribe(result => {
+      this.dialogRef.close()
+    });
+  }
+
+  ngOnInit() {
+    this.initSelectors();
+  }
+
+  initSelectors() {
+    this.selectedCity = null;
+    this.selectedCountry = null;
+
+
+    this.cities = [];
+
+    this.countryService.getAll().subscribe(result => {
+      this.countries = result.map(result => new BaseDto(result.id, result.name));
+      this.countries.unshift();
+    });
+
+    this.specialityService.getAll().subscribe(result => {
+      this.specialities = result.map(result => new BaseDto(result.id, result.name));
+      this.specialities.unshift();
+    });
+  }
+
+  selectorChangedCountry(newValue) {
+    this.selectedCountry = newValue.id;
+
+    if (this.selectedCountry == null) {
+      this.cities = [all];
+      this.selectedCity = newValue;
+      return;
+    }
+
+    this.cityService.getAllByCountry(this.selectedCountry).subscribe(result => {
+      this.cities = result.map(result => new BaseDto(result.id, result.name));
+      this.cities.unshift(all);
+      this.selectedCity = null;
+    });
   }
 }
 

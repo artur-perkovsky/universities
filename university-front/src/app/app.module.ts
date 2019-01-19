@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'; // <-- NgModel lives here
 import { MatCardModule } from '@angular/material/card';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { DialogOverviewDialogUniversity, UniversityComponent } from './components/university/university.component';
+import { CreateUniversityDialog, UniversityComponent } from './components/university/university.component';
 import { CityComponent, DialogOverviewDialogCity } from './components/city/city.component';
 import { CountryComponent, DialogOverviewDialogCountry } from './components/country/country.component';
 
@@ -45,7 +45,7 @@ import { DeleteButtonCountryComponent } from "./components/delete-button/delete-
     CountryComponent,
     DashboardComponent,
     NavigationComponent,
-    DialogOverviewDialogUniversity,
+    CreateUniversityDialog,
     DialogOverviewDialogCity,
     DialogOverviewDialogCountry,
     CitySelectComponent,
@@ -76,11 +76,12 @@ import { DeleteButtonCountryComponent } from "./components/delete-button/delete-
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatSortModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
-    DialogOverviewDialogUniversity,
+    CreateUniversityDialog,
     DialogOverviewDialogCity,
     DialogOverviewDialogCountry,
     DeleteButtonCityComponent,

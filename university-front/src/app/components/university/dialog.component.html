@@ -1,22 +1,40 @@
 <h1 mat-dialog-title>Add new University</h1>
 <div mat-dialog-content>
   <mat-form-field>
-    <input matInput [(ngModel)]="data.animal" placeholder="Name">
+    <input matInput [(ngModel)]="universityDto.name" placeholder="Name">
   </mat-form-field>
   <mat-form-field>
-    <input matInput [(ngModel)]="data.animal" placeholder="Age">
+    <input matInput [(ngModel)]="universityDto.age" placeholder="Age">
+  </mat-form-field>
+
+  <mat-form-field class="selectCountry">
+    <mat-select placeholder="Country" [(ngModel)]="universityDto.country"
+                (ngModelChange)="selectorChangedCountry($event)">
+      <mat-option *ngFor="let country  of countries  " [value]="country">
+        {{country.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="selectCity">
+    <mat-select placeholder="City" [(ngModel)]="universityDto.city">
+      <mat-option *ngFor="let city  of cities  " [value]="city">
+        {{city.name}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
   <mat-form-field>
-    <input matInput [(ngModel)]="data.animal" placeholder="City">
+    <input matInput [(ngModel)]="universityDto.rating" placeholder="Rating">
   </mat-form-field>
+
   <mat-form-field>
-    <input matInput [(ngModel)]="data.animal" placeholder="Country">
+    <mat-select placeholder="Specialities" [formControl]="toppings" multiple  [(ngModel)]="universityDto.specialities">
+      <mat-option *ngFor="let specialty of specialities" [value]="specialty">{{specialty.name}}</mat-option>
+    </mat-select>
   </mat-form-field>
-  <mat-form-field>
-    <input matInput [(ngModel)]="data.animal" placeholder="Rating">
-  </mat-form-field>
+
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+  <button mat-button [mat-dialog-close]="universityDto" (click)="onYesClick()" cdkFocusInitial >Ok</button>
 </div>
