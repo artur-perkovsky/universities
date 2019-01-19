@@ -1,7 +1,13 @@
 package com.university.task.university;
 
-import com.university.task.university.controller.dto.*;
-import com.university.task.university.model.*;
+import com.university.task.university.controller.dto.CityDto;
+import com.university.task.university.controller.dto.CountryDto;
+import com.university.task.university.controller.dto.SpecialtyDto;
+import com.university.task.university.controller.dto.UniversityDto;
+import com.university.task.university.model.CityEntity;
+import com.university.task.university.model.CountryEntity;
+import com.university.task.university.model.SpecialtyEntity;
+import com.university.task.university.model.UniversityEntity;
 import com.university.task.university.utils.EntityFinder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -23,7 +29,6 @@ public class Main implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(CityDto.class, CityEntity.class, source -> source.convert(entityFinder));
         registry.addConverter(CountryDto.class, CountryEntity.class, source -> source.convert(entityFinder));
-        registry.addConverter(RatingDto.class, RatingEntity.class, source -> source.convert(entityFinder));
         registry.addConverter(SpecialtyDto.class, SpecialtyEntity.class, source -> source.convert(entityFinder));
         registry.addConverter(UniversityDto.class, UniversityEntity.class, source -> source.convert(entityFinder));
     }
