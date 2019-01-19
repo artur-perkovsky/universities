@@ -1,0 +1,43 @@
+<div class="root-component">
+
+  <mat-drawer-container class="page">
+
+    <mat-drawer mode="side" opened>
+      <app-navigation></app-navigation>
+    </mat-drawer>
+
+    <mat-drawer-content class="university-sidenav-content">
+
+      <div class="example-container mat-elevation-z8">
+        <div class="example-table-container country-table">
+
+          <table mat-table [dataSource]="specialities" class="example-table">
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Name</th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <!-- button Column -->
+            <ng-container matColumnDef=" ">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-stroked-button (click)="openDeleteDialog(element.id)">Delete</button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let element; columns: displayedColumns;"></tr>
+          </table>
+
+        </div>
+        <mat-paginator [length]="resultsLength" [pageSize]="pageSize"></mat-paginator>
+      </div>
+
+      <div class="add-button">
+        <button mat-fab color="primary" (click)="openDialog()">Add</button>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

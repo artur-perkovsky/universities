@@ -1,18 +1,20 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {CountryService} from "../../service/country/country.service";
-import {CountryDto} from "../../dto/country.dto";
-
 import {MatDialog, MatDialogRef, MatPaginator} from "@angular/material";
-import {DeleteButtonCountryComponent} from "../delete-button/delete-button-country.component";
 import {merge, of as observableOf} from "rxjs";
 import {catchError, map, startWith, switchMap} from "rxjs/operators";
+import {CreateCountryDialog} from "../country/country.component";
+import {SpecialtyDto} from "../../dto/specialty.dto";
+import {SpecialtyService} from "../../service/specialty/specialty.service";
+import {DeleteButtonSpecialitiesComponent} from "../delete-button/delete-button-specialities.component";
+import {CountryDto} from "../../dto/country.dto";
 
 @Component({
-  selector: 'app-country',
-  templateUrl: './country.component.html',
-  styleUrls: ['./country.component.css']
+  selector: 'app-specialities',
+  templateUrl: './specialities.component.html',
+  styleUrls: ['./specialities.component.css']
 })
-export class CountryComponent implements OnInit {
+export class SpecialitiesComponent implements OnInit {
+
   pageSize = 0;
   resultsLength = 0;
   isLoadingResults = true;
@@ -22,13 +24,13 @@ export class CountryComponent implements OnInit {
 
   displayedColumns: string[] = ['name', ' '];
 
-  country: CountryDto [];
+  specialities: SpecialtyDto [];
 
-  constructor(public dialog: MatDialog, private service: CountryService) {
+  constructor(public dialog: MatDialog, private service: SpecialtyService) {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(CreateCountryDialog, {
+    const dialogRef = this.dialog.open(CreateSpecialtyDialog, {
       width: '250px',
     });
 
@@ -39,7 +41,7 @@ export class CountryComponent implements OnInit {
   }
 
   openDeleteDialog(id: number): void {
-    const dialogRefDell = this.dialog.open(DeleteButtonCountryComponent, {
+    const dialogRefDell = this.dialog.open(DeleteButtonSpecialitiesComponent, {
       width: '250px',
       data: {id: id}
     });
@@ -83,7 +85,7 @@ export class CountryComponent implements OnInit {
           this.isRateLimitReached = true;
           return observableOf([]);
         })
-      ).subscribe(data => this.country = data);
+      ).subscribe(data => this.specialities = data);
   }
 }
 
@@ -91,13 +93,13 @@ export class CountryComponent implements OnInit {
   selector: 'dialog-overview-dialog',
   templateUrl: './dialog.component.html',
 })
-export class CreateCountryDialog {
+export class CreateSpecialtyDialog {
 
-  countryDto: CountryDto = new CountryDto(null, null);
+  specialtyDto: SpecialtyDto = new CountryDto(null, null);
 
   constructor(
     public dialogRef: MatDialogRef<CreateCountryDialog>,
-    private countryService: CountryService
+    private service: SpecialtyService
   ) {
   }
 
@@ -106,9 +108,8 @@ export class CreateCountryDialog {
   }
 
   onYesClick(): void {
-    this.countryService.save(this.countryDto).subscribe(result => {
+    this.service.save(this.specialtyDto).subscribe(result => {
       this.dialogRef.close()
     });
   }
 }
-

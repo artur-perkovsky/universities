@@ -31,6 +31,8 @@ import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-b
 import {DeleteButtonCityComponent} from './components/delete-button/delete-button-city.component';
 import {DeleteButtonUniversityComponent} from "./components/delete-button/delete-button-university.component";
 import {DeleteButtonCountryComponent} from "./components/delete-button/delete-button-country.component";
+import {CreateSpecialtyDialog, SpecialitiesComponent} from './components/specialities/specialities.component';
+import {DeleteButtonSpecialitiesComponent} from "./components/delete-button/delete-button-specialities.component";
 
 
 @NgModule({
@@ -47,6 +49,9 @@ import {DeleteButtonCountryComponent} from "./components/delete-button/delete-bu
     DeleteButtonCityComponent,
     DeleteButtonUniversityComponent,
     DeleteButtonCountryComponent,
+    DeleteButtonSpecialitiesComponent,
+    SpecialitiesComponent,
+    CreateSpecialtyDialog
   ],
   imports: [
     BrowserModule,
@@ -77,7 +82,9 @@ import {DeleteButtonCountryComponent} from "./components/delete-button/delete-bu
     CreateCountryDialog,
     DeleteButtonCityComponent,
     DeleteButtonCountryComponent,
-    DeleteButtonUniversityComponent
+    DeleteButtonUniversityComponent,
+    DeleteButtonSpecialitiesComponent,
+    CreateSpecialtyDialog
   ]
 })
 export class AppModule {

@@ -14,10 +14,6 @@ export class CountryService extends AbstractCrudService <CountryDto>{
     super(httpClient);
   }
 
-  save(dto: CountryDto): Observable<CountryDto> {
-    return this.httpClient.post<CountryDto>(this.getPath() + "/save", dto);
-  }
-
   getPath(): string{
     return "/api/country";
   }

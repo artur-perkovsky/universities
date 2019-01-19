@@ -1,7 +1,6 @@
-import {Component, Inject} from '@angular/core';
-
+import {Component, Inject} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {CityService} from "../../service/city/city.service";
+import {SpecialtyService} from "../../service/specialty/specialty.service";
 
 export interface DialogData {
   id: number;
@@ -12,12 +11,12 @@ export interface DialogData {
   templateUrl: './delete-button.component.html',
   styleUrls: ['./delete-button.component.css']
 })
-export class DeleteButtonCityComponent {
+export class DeleteButtonSpecialitiesComponent {
 
   needUpdate: boolean = false;
 
-  constructor(private service: CityService,
-              public dialogRef: MatDialogRef<DeleteButtonCityComponent>,
+  constructor(private service: SpecialtyService,
+              public dialogRef: MatDialogRef<DeleteButtonSpecialitiesComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData) {
   }
 
@@ -33,6 +32,3 @@ export class DeleteButtonCityComponent {
     });
   }
 }
-
-
-
