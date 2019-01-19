@@ -35,20 +35,25 @@ export class SpecialitiesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.paginator.pageIndex = 0;
-      this.updateTable();
+      this.delay(250).then(any => {
+        this.paginator.pageIndex = 0;
+        this.updateTable();
+      });
     });
   }
 
   openDeleteDialog(id: number): void {
     const dialogRefDell = this.dialog.open(DeleteButtonSpecialitiesComponent, {
       width: '250px',
+
       data: {id: id}
     });
 
     dialogRefDell.afterClosed().subscribe(result => {
-      this.paginator.pageIndex = 0;
-      this.updateTable();
+      this.delay(250).then(any => {
+        this.paginator.pageIndex = 0;
+        this.updateTable();
+      });
     });
   }
 
@@ -59,7 +64,6 @@ export class SpecialitiesComponent implements OnInit {
   createSearchParams(): string {
 
     let result = '?';
-
     return result;
   }
 
@@ -86,6 +90,10 @@ export class SpecialitiesComponent implements OnInit {
           return observableOf([]);
         })
       ).subscribe(data => this.specialities = data);
+  }
+
+  async delay(ms: number) {
+    await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => console.log("fired"));
   }
 }
 

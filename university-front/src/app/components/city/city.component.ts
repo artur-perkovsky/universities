@@ -44,8 +44,10 @@ export class CityComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.paginator.pageIndex = 0;
-      this.updateTable();
+      this.delay(250).then(any => {
+        this.paginator.pageIndex = 0;
+        this.updateTable();
+      });
     });
   }
 
@@ -57,8 +59,10 @@ export class CityComponent implements OnInit {
     });
 
     dialogRefDell.afterClosed().subscribe(result => {
-      this.paginator.pageIndex = 0;
-      this.updateTable();
+      this.delay(250).then(any => {
+        this.paginator.pageIndex = 0;
+        this.updateTable();
+      });
     });
   }
 
@@ -122,6 +126,10 @@ export class CityComponent implements OnInit {
   resetFilter() {
     this.initSelectors();
     this.updateTable();
+  }
+
+  async delay(ms: number) {
+    await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => console.log("fired"));
   }
 }
 
