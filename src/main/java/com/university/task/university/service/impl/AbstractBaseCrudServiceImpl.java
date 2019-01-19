@@ -42,4 +42,9 @@ public class AbstractBaseCrudServiceImpl<T extends BaseEntity, S> implements Bas
     public List<T> all() {
         return repository.findAll();
     }
+
+    @Override
+    public List<T> search(Specification<T> specification) {
+        return repository.findAll(specification);
+    }
 }

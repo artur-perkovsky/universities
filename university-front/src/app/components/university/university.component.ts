@@ -7,7 +7,7 @@ import {catchError, map, startWith, switchMap} from "rxjs/operators";
 import {BaseDto} from "../../dto/base.dto";
 import {CityService} from "../../service/city/city.service";
 import {CountryService} from "../../service/country/country.service";
-import { DeleteButtonUniversityComponent } from "../delete-button/delete-button-university.component";
+import {DeleteButtonUniversityComponent} from "../delete-button/delete-button-university.component";
 
 export interface DialogData {
   animal: string;
@@ -27,15 +27,15 @@ export class UniversityComponent implements OnInit {
 
   value: string;
 
-  selectedAge: BaseDto = all;
-  selectedCity: BaseDto = all;
-  selectedCountry: BaseDto = all;
+  selectedAge: number;
+  selectedCity: number;
+  selectedCountry: number;
 
   allAge: BaseDto [] = [all];
   cities: BaseDto [] = [all];
   countries: BaseDto [] = [all];
 
-  displayedColumns: string[] = ['id', 'name', 'age', 'city', 'country', ' ',];
+  displayedColumns: string[] = ['name', 'age', 'city', 'country', 'specialities', ' ',];
 
   universities: UniversityDto [] = [];
 
@@ -52,11 +52,6 @@ export class UniversityComponent implements OnInit {
   }
 
   initSelectors() {
-    this.cityService.getAll().subscribe(result => {
-      this.cities = result.map(result => new BaseDto(result.id, result.name));
-      this.cities.unshift(all);
-    });
-
     this.countryService.getAll().subscribe(result => {
       this.countries = result.map(result => new BaseDto(result.id, result.name));
       this.countries.unshift(all);
@@ -67,16 +62,16 @@ export class UniversityComponent implements OnInit {
 
     let result = '?';
 
-    if (this.selectedAge.id != null) {
-      result = result + `age=${this.selectedAge.id}&`;
+    if (this.selectedAge != null) {
+      result = result + `age=${this.selectedAge}&`;
     }
 
-    if (this.selectedCity.id != null) {
-      result = result + `city=${this.selectedCity.id}&`;
+    if (this.selectedCity != null) {
+      result = result + `city=${this.selectedCity}&`;
     }
 
-    if (this.selectedCountry.id != null) {
-      result = result + `country=${this.selectedCountry.id}&`;
+    if (this.selectedCountry != null) {
+      result = result + `country=${this.selectedCountry}&`;
     }
 
     return result;
@@ -107,22 +102,36 @@ export class UniversityComponent implements OnInit {
     });
   }
 
-  selectorChangedAge(element: BaseDto) {
-    this.selectedAge = element;
+  selectorChangedAge() {
     this.paginator.pageIndex = 0;
     this.updateTable();
   }
 
-  selectorChangedCity(element: BaseDto) {
-    this.selectedCity = element;
+  selectorChangedCity(newValue) {
+    this.selectedCity = newValue;
     this.paginator.pageIndex = 0;
     this.updateTable();
   }
 
-  selectorChangedCountry(element: BaseDto) {
-    this.selectedCountry = element;
+  selectorChangedCountry(newValue) {
+
+    this.selectedCountry = newValue;
+
     this.paginator.pageIndex = 0;
-    this.updateTable();
+
+    if (this.selectedCountry == null) {
+      this.cities = [all];
+      this.selectorChangedCity(null);
+      return;
+    }
+
+    this.cityService.getAllByCountry(this.selectedCountry).subscribe(result => {
+      this.cities = result.map(result => new BaseDto(result.id, result.name));
+      this.cities.unshift(all);
+      this.selectedCity = null;
+
+      this.updateTable();
+    });
   }
 
   updateTable() {

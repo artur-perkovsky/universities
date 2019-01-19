@@ -5,4 +5,5 @@ export class UniversityDto extends BaseDto {
   age: number;
   city: BaseDto;
   country: BaseDto;
+  specialities: BaseDto [];
 }

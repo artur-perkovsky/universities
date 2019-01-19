@@ -39,6 +39,27 @@ public class CityController {
         return ok(service.all().stream().map(CityDto::from).collect(Collectors.toList()));
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<CityDto>> all(@Valid CitySearch search) {
+        final Specification<CityEntity> name = (root, query, builder) ->
+                ofNullable(search.getName())
+                        .map(value -> builder.lessThan(root.get("name"), search.getName()))
+                        .orElse(null);
+
+        final Specification<CityEntity> country = (root, query, builder) ->
+                ofNullable(search.getCountry())
+                        .map(value -> builder.equal(root.join("country", JoinType.INNER).get("id"), search.getCountry()))
+                        .orElse(null);
+
+        final Specification<CityEntity> result = (root, query, builder) -> {
+            query.distinct(true);
+            return where(name.and(country)).toPredicate(root, query, builder);
+        };
+
+        return ok(service.search(result).stream().map(CityDto::from).collect(Collectors.toList()));
+    }
+
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<CityDto> index(@PathVariable Long id) {
         return service.byId(id).map(cityEntity -> ok(CityDto.from(cityEntity))).orElseThrow(UniversityBadRequestException::new);
@@ -67,7 +88,7 @@ public class CityController {
 
         final Specification<CityEntity> country = (root, query, builder) ->
                 ofNullable(search.getCountry())
-                        .map(value -> builder.equal(root.join("countryEntity", JoinType.INNER).get("id"), search.getCountry()))
+                        .map(value -> builder.equal(root.join("country", JoinType.INNER).get("id"), search.getCountry()))
                         .orElse(null);
 
         final Specification<CityEntity> result = (root, query, builder) -> {

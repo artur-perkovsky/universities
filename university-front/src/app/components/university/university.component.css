@@ -61,13 +61,13 @@ table {
 .selectCity{
   position: absolute;
   float: left;
-  margin-left: 100px;
-  width: 100px;
+  margin-left: 220px;
+  width: 120px;
 }
 
 .selectCountry{
   position: absolute;
   float: left;
-  margin-left: 220px;
-  width: 120px;
+  margin-left: 100px;
+  width: 100px;
 }

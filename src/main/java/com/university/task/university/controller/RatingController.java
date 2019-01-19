@@ -73,7 +73,7 @@ public class RatingController {
 
         final Specification<RatingEntity> country = (root, query, builder) ->
                 ofNullable(search.getCountry())
-                        .map(value -> builder.equal(root.join("countryEntity", JoinType.INNER).get("id"), search.getCountry()))
+                        .map(value -> builder.equal(root.join("country", JoinType.INNER).get("id"), search.getCountry()))
                         .orElse(null);
 
         final Specification<RatingEntity> result = (root, query, builder) -> {

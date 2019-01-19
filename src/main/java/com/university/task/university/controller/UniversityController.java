@@ -66,7 +66,7 @@ public class UniversityController {
 
         final Specification<UniversityEntity> specialties = (root, query, builder) -> ofNullable(search.getSpecialties()).map(values -> builder.isTrue(root.join("specialties", JoinType.INNER).get("id").in(search.getSpecialties()))).orElse(null);
 
-        final Specification<UniversityEntity> country = (root, query, builder) -> ofNullable(search.getCountry()).map(values -> builder.equal(root.join("city", JoinType.INNER).join("countryEntity", JoinType.INNER).get("id"), search.getCountry())).orElse(null);
+        final Specification<UniversityEntity> country = (root, query, builder) -> ofNullable(search.getCountry()).map(values -> builder.equal(root.join("city", JoinType.INNER).join("country", JoinType.INNER).get("id"), search.getCountry())).orElse(null);
 
         final Specification<UniversityEntity> result = (root, query, builder) -> {
             query.distinct(true);

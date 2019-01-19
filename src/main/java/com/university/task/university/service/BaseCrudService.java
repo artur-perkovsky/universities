@@ -19,4 +19,6 @@ public interface BaseCrudService<T extends BaseEntity, S> {
     Page<T> list(Specification <T> specification, Pageable page);
 
     List<T> all();
+
+    List<T> search(Specification <T> specification);
 }
