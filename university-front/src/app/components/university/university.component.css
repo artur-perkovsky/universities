@@ -7,7 +7,7 @@ table {
   height: 100%;
 }
 
-.example-sidenav-content {
+.university-sidenav-content {
   display: flex;
   height: 100%;
   align-items: flex-start;
@@ -33,7 +33,7 @@ table {
 .add-button {
   position: fixed;
   margin-left: 82%;
-  margin-top: 300px;
+  margin-top: 40%;
 }
 
 /*select*/
